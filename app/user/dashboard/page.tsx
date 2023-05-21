@@ -20,12 +20,13 @@ const Dashboard = async () => {
         },
     });
 
+    let techLength = currentUser?.tech?.length ?? 0;
     return (
         <main className="container" style={{ textAlign: 'center' }}>
             <h2>Welcome, {currentUser?.name}.</h2>
             {/* <code>{`[${hintData.toString()}]`}</code> */}
             <TechForm />
-            {currentUser?.tech?.length > 0 ? (
+            {techLength > 0 ? (
                 <>
                     <h3>Your Tech</h3>
                     <div className="container grid">
