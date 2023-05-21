@@ -1,0 +1,26 @@
+/* Header */
+.nav {
+	padding: 0 3rem !important;
+}
+
+.nav-links {
+	display: flex;
+	align-items: center;
+	list-style: none;
+	font-size: 1rem;
+	font-weight: 600 !important;
+}
+.nav-link {
+	text-decoration: none;
+	color: #ffffff;
+	transition: all 0.2s ease-in-out;
+}
+
+.nav-link:hover {
+	color: #00adb5;
+}
+
+.logo {
+	font-size: 2.5rem;
+	font-weight: 700;
+}
