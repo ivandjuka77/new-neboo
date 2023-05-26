@@ -7,14 +7,12 @@ import {
     Card,
     CardContent,
     CardDescription,
-    CardFooter,
     CardHeader,
     CardTitle,
 } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Icons } from '@/components/icons';
-import SignIn from '@/app/auth/signin/page';
 
 export function LoginCard({ providers }: any) {
     return (
@@ -50,22 +48,24 @@ export function LoginCard({ providers }: any) {
                     </div>
                 </div>
                 <div className="grid grid-cols-2 gap-6">
-                    {Object.values(providers).map((provider: any) => (
-                        <Button
-                            variant="outline"
-                            onClick={() => signIn(provider.id)}
-                            key={provider?.name}
-                        >
-                            {provider.name === 'GitHub' ? (
-                                <Icons.GitHub className="mr-2 h-4 w-4" />
-                            ) : provider.name === 'Google' ? (
-                                <Icons.chrome className="mr-2 h-4 w-4" />
-                            ) : (
-                                ''
-                            )}
-                            {provider.name}
-                        </Button>
-                    ))}
+                    {providers
+                        ? Object.values(providers).map((provider: any) => (
+                              <Button
+                                  variant="outline"
+                                  onClick={() => signIn(provider.id)}
+                                  key={provider?.name}
+                              >
+                                  {provider.name === 'GitHub' ? (
+                                      <Icons.GitHub className="mr-2 h-4 w-4" />
+                                  ) : provider.name === 'Google' ? (
+                                      <Icons.chrome className="mr-2 h-4 w-4" />
+                                  ) : (
+                                      ''
+                                  )}
+                                  {provider.name}
+                              </Button>
+                          ))
+                        : ''}
                 </div>
             </CardContent>
         </Card>
