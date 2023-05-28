@@ -1,8 +1,8 @@
 import { getServerSession } from 'next-auth/next';
 import { getProviders, signIn } from 'next-auth/react';
 
-import { LoginCard } from '@/components/ui/LoginCard';
 import { Button } from '@/components/ui/button';
+import { LoginCard } from '@/components/LoginCard';
 import { options } from '@/app/api/auth/[...nextauth]/route';
 
 const SignIn = async () => {

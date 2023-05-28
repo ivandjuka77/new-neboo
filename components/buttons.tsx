@@ -80,13 +80,11 @@ export function SignInButton() {
     }
 
     return (
-        <Button
-            variant="outline"
-            className="text-black dark:text-white"
-            onClick={() => signIn()}
-        >
-            Sign in
-        </Button>
+        <Link href="/auth/signin">
+            <Button variant="outline" className="text-black dark:text-white">
+                Sign in
+            </Button>
+        </Link>
     );
 }
 

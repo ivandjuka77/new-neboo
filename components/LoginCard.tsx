@@ -14,6 +14,13 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Icons } from '@/components/icons';
 
+const handleClick = async () => {
+    await signIn('credentials', {
+        username: '21@email.com',
+        password: '123456',
+    });
+};
+
 export function LoginCard({ providers }: any) {
     return (
         <Card>
@@ -66,6 +73,9 @@ export function LoginCard({ providers }: any) {
                               </Button>
                           ))
                         : ''}
+                    <Button variant="outline" onClick={handleClick}>
+                        Credentaiols
+                    </Button>
                 </div>
             </CardContent>
         </Card>

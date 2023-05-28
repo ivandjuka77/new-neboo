@@ -53,6 +53,7 @@ model User {
   accounts      Account[]
   sessions      Session[]
   people        People[]
+  job           Job[]
 }
 
 model VerificationToken {
@@ -73,4 +74,18 @@ model People {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
   createdAt DateTime @default(now())
   message String 
+
+}
+
+model Job {
+  id String @id @default(cuid()) @unique
+  url String
+  title String
+  companyName String
+  location String
+  type String
+  userId String
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  contact String
+  createdAt DateTime @default(now())
 }
