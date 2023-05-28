@@ -1,6 +1,5 @@
 import '@/styles/globals.css';
 import { Metadata } from 'next';
-import Head from 'next/head';
 import Stripe from 'stripe';
 
 import { siteConfig } from '@/config/site';
@@ -39,7 +38,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
     return (
         <AuthProvider>
             <html lang="en" suppressHydrationWarning>
-                <Head />
+                <head />
                 <body
                     className={cn(
                         'min-h-screen bg-background font-sans antialiased',
