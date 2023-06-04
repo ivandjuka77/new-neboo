@@ -14,32 +14,34 @@ import {
 } from '@/components/ui/card';
 import {
     Sheet,
+    SheetClose,
     SheetContent,
     SheetDescription,
+    SheetFooter,
     SheetHeader,
     SheetTitle,
     SheetTrigger,
 } from '@/components/ui/sheet';
 import { Textarea } from '@/components/ui/textarea';
 
+import ContactCard from './ContactCard';
+import DeleteJob from './DeleteJob';
+import { JobNotes } from './JobNotes';
 import { Checkbox } from './ui/checkbox';
 
-type CardProps = React.ComponentProps<typeof Card>;
-
-export function JobCard({ className, ...props }: CardProps) {
+export function JobCard({
+    className,
+    job,
+    ...props
+}: CardProps & { job: Job }) {
     return (
         <Sheet>
             <SheetTrigger className="w-10/12">
-                <Card
-                    className={cn('mt-5  cursor-pointer ', className)}
-                    {...props}
-                >
+                <Card className={cn('mt-1 ', className)} {...props}>
                     <CardHeader>
-                        <CardTitle className="text-left">
-                            Frontend Developer
-                        </CardTitle>
+                        <CardTitle className="text-left">{job.title}</CardTitle>
                         <CardDescription>
-                            <div className="text-left">Voxwise</div>
+                            <div className="text-left">{job.companyName}</div>
                         </CardDescription>
                     </CardHeader>
                 </Card>
@@ -49,74 +51,35 @@ export function JobCard({ className, ...props }: CardProps) {
                     <SheetTitle>
                         <div>
                             <a
-                                href="https://tailwindcss.com/docs/width"
+                                href={job.url}
                                 target="_blank"
                                 rel="noreferrer"
-                                className=" flex items-center mb-1"
+                                className=" mb-1 flex items-center"
                             >
-                                <span className="text-4xl tracking-tight mr-4">
-                                    Frontend Developer
+                                <span className="mr-4 text-4xl tracking-tight">
+                                    {job.title}
                                 </span>
 
                                 <ExternalLink />
                             </a>
                         </div>
 
-                        <span className="text-2xl text-gray-400 tracking-tight ">
-                            Voxwise
+                        <span className="text-2xl tracking-tight text-gray-400 ">
+                            {job.companyName}
                         </span>
                     </SheetTitle>
                     <SheetDescription>
                         <div className="mt-5">
                             <span className="text-lg font-bold tracking-tight">
-                                Location: Bratislava
+                                Location: {job.location}
                             </span>
                             <br />
                             <span className="text-lg font-bold tracking-tight">
-                                Type: Remote
+                                Type: {job.type}
                             </span>
                             <br />
                             <div className="grid grid-cols-2 grid-rows-3  gap-x-5">
-                                <Card
-                                    className={cn('mt-5', className)}
-                                    {...props}
-                                >
-                                    <CardHeader>
-                                        <CardTitle className="text-left text-2xl">
-                                            Contact
-                                        </CardTitle>
-                                        <CardDescription>
-                                            <div className="text-left mt-3">
-                                                <span className="text-lg font-bold tracking-tight">
-                                                    Name: John Doe
-                                                </span>
-                                                <br />
-                                                <span className="text-lg font-bold tracking-tight">
-                                                    Position: Recruiter
-                                                </span>
-                                                <br />
-                                                <br />
-                                            </div>
-                                        </CardDescription>
-                                    </CardHeader>
-                                    <CardFooter>
-                                        <div className=" flex items-center space-x-2">
-                                            <Button
-                                                variant="outline"
-                                                className="mr-3"
-                                            >
-                                                Show Message
-                                            </Button>
-                                            <Checkbox id="message" />
-                                            <label
-                                                htmlFor="message"
-                                                className="text-md font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                                            >
-                                                Message sent
-                                            </label>
-                                        </div>
-                                    </CardFooter>
-                                </Card>
+                                <ContactCard />
                                 <Card
                                     className={cn('mt-5', className)}
                                     {...props}
@@ -166,27 +129,11 @@ export function JobCard({ className, ...props }: CardProps) {
                                     </CardHeader>
                                 </Card>
 
-                                <Card
-                                    className={cn(
-                                        'mt-5  col-span-2',
-                                        className
-                                    )}
-                                    {...props}
-                                >
-                                    <CardHeader>
-                                        <CardTitle className="text-left text-2xl">
-                                            Notes
-                                        </CardTitle>
-                                        <CardDescription>
-                                            <div className="mt-2 ">
-                                                <Textarea
-                                                    placeholder="Type your notes here."
-                                                    className="resize-none xl:h-40 lg:h-32 w-full border-0 focus:ring-0 focus:border-gray-300"
-                                                />
-                                            </div>
-                                        </CardDescription>
-                                    </CardHeader>
-                                </Card>
+                                <JobNotes jobid={job.id} jobnote={job.notes} />
+
+                                <div className="mt-10 flex justify-between">
+                                    <DeleteJob jobid={job.id} />
+                                </div>
                             </div>
                         </div>
                     </SheetDescription>

@@ -1,17 +1,13 @@
 import { log } from 'console';
-import { NextRequest } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 
 import { prisma } from '@/lib/prisma';
-
-import { options } from '../auth/[...nextauth]/route';
+import { options } from '@/app/api/auth/[...nextauth]/route';
 
 export async function POST(req) {
     const session = await getServerSession(options);
     const currentUserName = session?.user?.name;
-    let data = await req.json();
-
-    log(data, 'data');
 
     const user = await prisma.user.findFirst({
         where: {
@@ -28,29 +24,21 @@ export async function POST(req) {
         })
         .then((user) => user?.id);
 
-    const job = await prisma.job.create({
+    const body = await req.json();
+
+    const { jobsId, columnId } = body;
+
+    const updatedJob = await prisma.job.update({
+        where: {
+            id: jobsId,
+        },
         data: {
-            ...data,
-            userId: currentUserId,
+            status: columnId,
         },
     });
-    console.log('123');
+
     return {
         status: 200,
-        body: {
-            message: 'Job created',
-        },
+        body: updatedJob,
     };
-}
-
-export async function DELETE(req) {
-    const request = new NextRequest(req);
-    const targetJobId = request.nextUrl.searchParams.get('targetJobId');
-    log(targetJobId, 'this is id');
-
-    const job = await prisma.job.delete({
-        where: {
-            id: targetJobId,
-        },
-    });
 }

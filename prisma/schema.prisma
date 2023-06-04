@@ -74,7 +74,7 @@ model People {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
   createdAt DateTime @default(now())
   message String 
-
+  
 }
 
 model Job {
@@ -87,5 +87,11 @@ model Job {
   userId String
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
   contact String
+  applied Boolean @default(false)
+  screeningCall Boolean @default(false)
+  interview Boolean @default(false)
+  offer Boolean @default(false)
+  notes String @default("")
   createdAt DateTime @default(now())
+  status String @default("potential")
 }
