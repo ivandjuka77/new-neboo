@@ -35,7 +35,7 @@ const AddContact = ({ contacts, jobId }: any) => {
     });
 
     const handleContactChange = (e: any) => {
-        fetch(`http://localhost:3000/api/jobs`, {
+        fetch(window.location.origin + `/api/jobs`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
