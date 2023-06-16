@@ -1,6 +1,22 @@
+'use client';
+
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { useContactStore } from '@/store/ContactStore';
 import { Check, ChevronsUpDown } from 'lucide-react';
 
 import { cn } from '@/lib/utils';
+import {
+    AlertDialog,
+    AlertDialogAction,
+    AlertDialogCancel,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle,
+    AlertDialogTrigger,
+} from '@/components/ui/alert-dialog';
 import { Button } from '@/components/ui/button';
 import {
     Card,
@@ -26,57 +42,90 @@ import {
 
 import AddContact from './AddContact';
 
-const contacts = [
-    {
-        value: 'John Doe',
-        label: 'john-doe',
-    },
-    {
-        value: 'Guy Fieri',
-        label: 'guy-fieri',
-    },
-    {
-        value: 'Gordon Ramsay',
-        label: 'gordon-ramsay',
-    },
-    {
-        value: 'Bobby Flay',
-        label: 'bobby-flay',
-    },
-    {
-        value: 'Anthony Bourdain',
-        label: 'anthony-bourdain',
-    },
-];
+const ContactCard = ({ className, ...props }: any) => {
+    const router = useRouter();
+    const job = props.job;
+    console.log(job, 'job');
+    const [getContacts] = useContactStore((state) => [state.getContacts]);
+    const [setContact] = useContactStore((state) => [state.setContact]);
+    const [contacts] = useContactStore((state) => [state.contacts]);
+    const [contact] = useContactStore((state) => [state.contact]);
+    const [contactInfo, setContactInfo] = useState({
+        id: '',
+        name: '',
+        jobCompanyName: '',
+        jobTitle: '',
+        message: '',
+        link: '',
+    });
 
-const ContactCard = ({ className, ...props }: CardProps) => {
-    const contact = false;
+    useEffect(() => {
+        if (job.contactId) {
+            console.log(job.contactId, 'job.contactId this is the contact id');
+            setContact(job.contactId);
+            setContactInfo({
+                id: job.contactId,
+                name: '',
+                jobCompanyName: '',
+                jobTitle: '',
+                message: '',
+                link: '',
+            });
+        } else {
+            getContacts();
+        }
+    }, [getContacts, job.contactId, setContact]);
+
+    console.log(contacts, 'these are the contacts');
+    console.log(contact, 'this is the contact!!!!!!!!!');
+
+    // const contactInfo.id = false;
+    // console.log(contacts, 'contactsss');
+
     return (
         <Card className={cn('mt-5', className)} {...props}>
             <CardHeader>
                 <CardTitle className="text-left text-2xl">Contact</CardTitle>
                 <CardDescription>
-                    {contact ? (
+                    {contactInfo.id ? (
                         <div className="mt-3 flex flex-col text-left">
                             <span className="text-lg font-bold tracking-tight">
-                                Name: John Doe
+                                Name: {contact.name}
                             </span>
 
                             <span className="text-lg font-bold tracking-tight">
-                                Position: Recruiter
+                                Position: {contact.jobTitle}
                             </span>
                         </div>
                     ) : (
-                        <AddContact />
+                        <AddContact contacts={contacts} jobId={job.id} />
                     )}
                 </CardDescription>
             </CardHeader>
-            {contact ? (
+            {contactInfo.id ? (
                 <CardFooter>
                     <div className=" flex items-center space-x-2">
-                        <Button variant="outline" className="mr-3">
-                            Show Message
-                        </Button>
+                        <AlertDialog>
+                            <AlertDialogTrigger asChild>
+                                <Button variant="outline">Show Message</Button>
+                            </AlertDialogTrigger>
+                            <AlertDialogContent className="text-black dark:text-white">
+                                <AlertDialogHeader>
+                                    <AlertDialogTitle>
+                                        Your Message
+                                    </AlertDialogTitle>
+                                    <AlertDialogDescription>
+                                        {contact.message}
+                                    </AlertDialogDescription>
+                                </AlertDialogHeader>
+                                <AlertDialogFooter>
+                                    <AlertDialogCancel>
+                                        Cancel
+                                    </AlertDialogCancel>
+                                    <AlertDialogAction>Copy</AlertDialogAction>
+                                </AlertDialogFooter>
+                            </AlertDialogContent>
+                        </AlertDialog>
                         <Checkbox id="message" />
                         <label
                             htmlFor="message"

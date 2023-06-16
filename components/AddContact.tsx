@@ -18,42 +18,40 @@ import {
     PopoverTrigger,
 } from '@/components/ui/popover';
 
-const contacts = [
-    {
-        value: 'john-doe',
-        label: 'John Doe',
-        position: 'Software Engineer',
-    },
-    {
-        label: 'Guy Fieri',
-        value: 'guy-fieri',
-        position: 'Chef',
-    },
-    {
-        label: 'Gordon Ramsay',
-        value: 'gordon-ramsay',
-        position: 'Chefino',
-    },
-    {
-        label: 'Bobby Flay',
-        value: 'bobby-flay',
-        position: 'Chefesseninho',
-    },
-    {
-        label: 'Anthony Bourdain',
-        value: 'anthony-bourdain',
-        position: 'Chefesseur',
-    },
-];
+const AddContact = ({ contacts, jobId }: any) => {
+    console.log(contacts, 'contactssssss');
+    console.log(jobId, 'jobId');
+    // console.log(contacts, 'contactsss');
 
-const AddContact = () => {
     const [open, setOpen] = useState(false);
     const [closed, setClosed] = useState(false);
     const [contactInfo, setContactInfo] = useState({
-        value: '',
-        label: '',
-        position: '',
+        id: '',
+        name: '',
+        jobCompanyName: '',
+        jobTitle: '',
+        message: '',
+        link: '',
     });
+
+    const handleContactChange = (e: any) => {
+        fetch(`http://localhost:3000/api/jobs`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+
+            body: JSON.stringify({
+                targetJobId: jobId,
+                targetContactId: contactInfo.id,
+            }),
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                console.log(data);
+            });
+    };
+
     return (
         <div className="mt-3 flex flex-col text-left ">
             {closed ? (
@@ -61,13 +59,13 @@ const AddContact = () => {
                     <div className="flex flex-col justify-between">
                         <div className="flex flex-col">
                             <div className="text-xl font-bold">
-                                {contactInfo.label}
+                                {contactInfo.name}
                             </div>
                             <div className="text-lg">
-                                {contactInfo.position}
+                                {contactInfo.jobCompanyName}
                             </div>
                         </div>
-                        <div className="flex flex-row mt-3">
+                        <div className="mt-3 flex flex-row">
                             <Button
                                 variant="outline"
                                 className="mr-2"
@@ -76,7 +74,10 @@ const AddContact = () => {
                                 Edit
                             </Button>
                             <Button variant="outline">
-                                <Check className="h-4 w-4" />
+                                <Check
+                                    onClick={handleContactChange}
+                                    className="h-4 w-4"
+                                />
                             </Button>
                         </div>
                     </div>
@@ -89,38 +90,45 @@ const AddContact = () => {
                                 variant="outline"
                                 role="combobox"
                                 aria-expanded={open}
-                                className="w-[200px] justify-between "
+                                className="w-[200px] justify-between"
                             >
-                                {contactInfo
-                                    ? contacts.find(
-                                          (contact) =>
-                                              contact.value ===
-                                              contactInfo.value
-                                      )?.label
-                                    : 'Select contact...'}
+                                {contactInfo.name
+                                    ? contactInfo.name
+                                    : 'Select framework...'}
                                 <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                             </Button>
                         </PopoverTrigger>
                         <PopoverContent className="w-[200px] p-0">
                             <Command>
-                                <CommandInput placeholder="Search contact..." />
-                                <CommandEmpty>No contact found.</CommandEmpty>
+                                <CommandInput placeholder="Search framework..." />
+                                <CommandEmpty>No framework found.</CommandEmpty>
                                 <CommandGroup>
-                                    {contacts.map((contact) => (
+                                    {contacts.map((contact: any) => (
                                         <CommandItem
-                                            key={contact.value}
-                                            onSelect={(currentValue) => {
+                                            key={contact.id}
+                                            onSelect={(currentName) => {
                                                 setContactInfo(
-                                                    currentValue ===
-                                                        contactInfo.value
+                                                    currentName ===
+                                                        contactInfo.name
                                                         ? {
-                                                              value: '',
-                                                              label: '',
-                                                              position: '',
+                                                              id: '',
+                                                              name: '',
+                                                              jobCompanyName:
+                                                                  '',
+                                                              jobTitle: '',
+                                                              message: '',
+                                                              link: '',
                                                           }
                                                         : {
-                                                              ...contact,
-                                                              value: currentValue,
+                                                              id: contact.id,
+                                                              name: contact.name,
+                                                              jobCompanyName:
+                                                                  contact.jobCompanyName,
+                                                              jobTitle:
+                                                                  contact.jobTitle,
+                                                              message:
+                                                                  contact.message,
+                                                              link: contact.link,
                                                           }
                                                 );
                                                 setOpen(false);
@@ -130,13 +138,13 @@ const AddContact = () => {
                                             <Check
                                                 className={cn(
                                                     'mr-2 h-4 w-4',
-                                                    contactInfo.value ===
-                                                        contact.value
+                                                    contactInfo.name ===
+                                                        contact.name
                                                         ? 'opacity-100'
                                                         : 'opacity-0'
                                                 )}
                                             />
-                                            {contact.label}
+                                            {contact.name}
                                         </CommandItem>
                                     ))}
                                 </CommandGroup>
@@ -144,7 +152,7 @@ const AddContact = () => {
                         </PopoverContent>
                     </Popover>
 
-                    <Button variant="outline" className="w-1/2 mt-5" disabled>
+                    <Button variant="outline" className="mt-5 w-1/2" disabled>
                         Add New
                     </Button>
                 </div>

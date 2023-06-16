@@ -10,7 +10,6 @@ const testJob = {
     companyName: 'Voxwise',
     location: 'Bratislava',
     type: 'Part Time',
-    contact: 'John Doe',
 };
 
 const AddJobButton = () => {

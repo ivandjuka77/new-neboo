@@ -1,5 +1,5 @@
 import { log } from 'console';
-import { NextRequest } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 
 import { prisma } from '@/lib/prisma';
@@ -52,5 +52,27 @@ export async function DELETE(req) {
         where: {
             id: targetJobId,
         },
+    });
+}
+
+// update contact info
+export async function PATCH(req) {
+    let data = await req.json();
+    const targetJobId = data.targetJobId;
+    const targetContactId = data.targetContactId;
+
+    log(data, 'data');
+
+    const job = await prisma.job.update({
+        where: {
+            id: targetJobId,
+        },
+        data: {
+            contactId: targetContactId,
+        },
+    });
+
+    return NextResponse.json({
+        message: `${targetJobId} updated with contact ${targetContactId}`,
     });
 }

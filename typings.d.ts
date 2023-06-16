@@ -24,3 +24,11 @@ interface Job {
 }
 
 type CardProps = React.ComponentProps<typeof Card>;
+
+
+interface Contact {
+    url: String
+    name: String 
+    jobTitle: String
+    message: String 
+}

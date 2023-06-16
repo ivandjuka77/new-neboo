@@ -6,27 +6,27 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider          = "postgresql"
+  url               = env("DATABASE_URL")
   shadowDatabaseUrl = env("SHADOW_DATABASE_URL") // Only needed when using a cloud provider that doesn't support the creation of new databases, like Neon. Learn more: https://pris.ly/d/migrate-shadow
 }
 
 // NextAuth Schema
 
 model Account {
-  id                 String  @id @default(cuid())
-  userId             String
-  type               String
-  provider           String
-  providerAccountId  String
-  refresh_token      String?  @db.Text
-  access_token       String?  @db.Text
-  expires_at         Int?
+  id                       String  @id @default(cuid())
+  userId                   String
+  type                     String
+  provider                 String
+  providerAccountId        String
+  refresh_token            String? @db.Text
+  access_token             String? @db.Text
+  expires_at               Int?
   refresh_token_expires_in Int?
-  token_type         String?
-  scope              String?
-  id_token           String?  @db.Text
-  session_state      String?
+  token_type               String?
+  scope                    String?
+  id_token                 String? @db.Text
+  session_state            String?
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
@@ -42,14 +42,14 @@ model Session {
 }
 
 model User {
-  id            String    @id @default(cuid()) 
+  id            String    @id @default(cuid())
   name          String?
-  bio           String? @db.Text
+  bio           String?   @db.Text
   age           Int?
   email         String?   @unique
   emailVerified DateTime?
   image         String?
-  tech         String[]
+  tech          String[]
   accounts      Account[]
   sessions      Session[]
   people        People[]
@@ -65,33 +65,34 @@ model VerificationToken {
 }
 
 model People {
-  id String @id @default(cuid()) @unique
-  url String
-  name String 
-  jobTitle String
+  id             String   @id @unique @default(cuid())
+  url            String
+  name           String
+  jobTitle       String
   jobCompanyName String
-  userId String
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-  createdAt DateTime @default(now())
-  message String 
-  
+  userId         String
+  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt      DateTime @default(now())
+  message        String
+  Job            Job[]
 }
 
 model Job {
-  id String @id @default(cuid()) @unique
-  url String
-  title String
-  companyName String
-  location String
-  type String
-  userId String
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-  contact String
-  applied Boolean @default(false)
-  screeningCall Boolean @default(false)
-  interview Boolean @default(false)
-  offer Boolean @default(false)
-  notes String @default("")
-  createdAt DateTime @default(now())
-  status String @default("potential")
+  id            String   @id @unique @default(cuid())
+  url           String
+  title         String
+  companyName   String
+  location      String
+  type          String
+  userId        String
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  contactId     String?
+  contact       People?  @relation(fields: [contactId], references: [id], onDelete: SetNull)
+  applied       Boolean  @default(false)
+  screeningCall Boolean  @default(false)
+  interview     Boolean  @default(false)
+  offer         Boolean  @default(false)
+  notes         String   @default("")
+  createdAt     DateTime @default(now())
+  status        String   @default("potential")
 }

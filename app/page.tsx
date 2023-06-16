@@ -8,17 +8,17 @@ const MainPage = async () => {
 
         return (
             <main style={{ textAlign: 'center' }}>
-                <h1 className="text-4xl font-bold mt-10 tracking-tight dark:text-white text-black">
+                <h1 className="mt-10 text-4xl font-bold tracking-tight text-black dark:text-white">
                     Welcome to the development version of neboo.
                 </h1>
-                <p className="text-xl font-bold mt-5 tracking-tight dark:text-white text-black ">
+                <p className="mt-5 text-xl font-bold tracking-tight text-black dark:text-white ">
                     If you have been granted access, please{' '}
                     <a href="/api/auth/signin" className="underline">
                         log in
                     </a>
                     .
                 </p>
-                <p className="text-l font-bold mt-5 tracking-tight dark:text-white text-black ">
+                <p className="text-l mt-5 font-bold tracking-tight text-black dark:text-white ">
                     neboo is currently in development. If you would like to be
                     an early tester, please email me at{' '}
                     <a

@@ -7,7 +7,7 @@ import { ThemeToggle } from './theme-toggle';
 
 const Navbar = () => {
     return (
-        <nav className="border-gray-200 bg-white dark:bg-gray-900">
+        <nav className="border-gray-200 bg-white dark:bg-gray-900 w-full fixed">
             <div className=" mx-20 flex flex-wrap items-center justify-between p-4">
                 <Link href="/" className="flex items-center">
                     <span className="self-center whitespace-nowrap text-4xl font-semibold text-black dark:text-white">

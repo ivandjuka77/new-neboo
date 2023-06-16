@@ -5,7 +5,6 @@ import { prisma } from '@/lib/prisma';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import AddJobButton from '@/components/AddJobButton';
-import DroppableTest from '@/components/DroppableTest';
 import { JobCard } from '@/components/JobCard';
 import KanbanTable from '@/components/KanbanTable';
 import SidebarMenu from '@/components/SidebarMenu';
@@ -41,7 +40,7 @@ const Kanban = async () => {
     //     redirect('/');
     // }
     return (
-        <div className="   flex flex-row ">
+        <div className="flex  h-[calc(100vh-72px)] w-[2000px] flex-row  ">
             <SidebarMenu />
 
             <KanbanTable />

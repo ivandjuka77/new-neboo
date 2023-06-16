@@ -25,7 +25,7 @@ const JobsColumn = (props: any) => {
                     <div
                         {...provided.droppableProps}
                         ref={provided.innerRef}
-                        className={`w-10/12 h-full pb-5 mt-5 transition duration-400 ease-in-out rounded-lg ${
+                        className={`duration-400 mt-5 h-full w-10/12 rounded-lg pb-5 transition ease-in-out ${
                             snapshot.isDraggingOver ? 'bg-gray-900' : ''
                         }`}
                     >
@@ -40,7 +40,7 @@ const JobsColumn = (props: any) => {
                                         {...provided.draggableProps}
                                         {...provided.dragHandleProps}
                                         ref={provided.innerRef}
-                                        className=" flex flex-row items-center w-full mt-5"
+                                        className=" mt-5 flex w-full flex-row items-center"
                                     >
                                         <div>
                                             <Icons.grip className="mr-1" />

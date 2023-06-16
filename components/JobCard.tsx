@@ -79,7 +79,7 @@ export function JobCard({
                             </span>
                             <br />
                             <div className="grid grid-cols-2 grid-rows-3  gap-x-5">
-                                <ContactCard />
+                                <ContactCard job={job} />
                                 <Card
                                     className={cn('mt-5', className)}
                                     {...props}

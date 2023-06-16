@@ -41,7 +41,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
                 <head />
                 <body
                     className={cn(
-                        'min-h-screen bg-background font-sans antialiased',
+                        'min-h-screen overflow-y-hidden overflow-x-scroll bg-background	font-sans	antialiased',
                         fontSans.variable
                     )}
                 >
@@ -52,7 +52,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
                     >
                         <div className="relative flex min-h-screen flex-col">
                             <Navbar />
-                            <div className="flex-1">{children}</div>
+                            <div className="mt-[72px] flex-1">{children}</div>
                             <Toaster />
                         </div>
                         <TailwindIndicator />
