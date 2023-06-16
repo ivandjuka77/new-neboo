@@ -9,16 +9,16 @@ import { options } from '../auth/[...nextauth]/route';
 export async function POST(req) {
     const session = await getServerSession(options);
     const currentUserName = session?.user?.name;
-    // let data = await req.json();
-    // data = data[0];
-    // log(data);
-    // const { name, job, location } = data;
+    let data = await req.json();
+    data = data[0];
+    log(data);
+    const { name, job, location } = data;
 
-    // const user = await prisma.user.findFirst({
-    //     where: {
-    //         name: currentUserName,
-    //     },
-    // });
+    const user = await prisma.user.findFirst({
+        where: {
+            name: currentUserName,
+        },
+    });
 
     // // const techArray = user.tech;
 
@@ -27,31 +27,31 @@ export async function POST(req) {
     // // console.log(techSentence, 'techArray');
 
     // // const message = `Hi ${name}, I saw that ${jobCompanyName} is looking for new programmers and I am quite interested in the position! I am mainly a ${techSentence} programmer, so I have been working with these tools for a while now. I would be happy if we could set up a 5 minute call to talk a bit more about the position. Thank you in advance! ${currentUserName}`;
-    // const message = 'test message';
+    const message = 'test message';
 
-    // const person = {
-    //     name: name || 'John Doe',
-    //     jobTitle: job || 'Software Engineer',
-    //     jobCompanyName: location || 'Google',
-    //     url: 'https://www.linkedin.com/in/john-doe-123456789/',
-    // };
+    const person = {
+        name: name || 'John Doe',
+        jobTitle: job || 'Software Engineer',
+        jobCompanyName: location || 'Google',
+        url: 'https://www.linkedin.com/in/john-doe-123456789/',
+    };
 
     // // Change to unique ID
-    // const currentUserId = await prisma.user
-    //     .findFirst({
-    //         where: {
-    //             name: currentUserName,
-    //         },
-    //     })
-    //     .then((user) => user?.id);
+    const currentUserId = await prisma.user
+        .findFirst({
+            where: {
+                name: currentUserName,
+            },
+        })
+        .then((user) => user?.id);
 
-    // const people = await prisma.people.create({
-    //     data: {
-    //         ...person,
-    //         message: message,
-    //         userId: currentUserId,
-    //     },
-    // });
+    const people = await prisma.people.create({
+        data: {
+            ...person,
+            message: message,
+            userId: currentUserId,
+        },
+    });
 
     return NextResponse.json({ message: 'success message' });
 }
