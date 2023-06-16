@@ -9,10 +9,10 @@ import { options } from '../auth/[...nextauth]/route';
 export async function POST(req) {
     const session = await getServerSession(options);
     const currentUserName = session?.user?.name;
-    // let data = await req.json();
-    // data = data[0];
-    // log(data);
-    // const { name, jobCompanyName } = data;
+    let data = await req.json();
+    data = data[0];
+    log(data);
+    const { name, job, location } = data;
 
     const user = await prisma.user.findFirst({
         where: {
@@ -29,10 +29,10 @@ export async function POST(req) {
     // const message = `Hi ${name}, I saw that ${jobCompanyName} is looking for new programmers and I am quite interested in the position! I am mainly a ${techSentence} programmer, so I have been working with these tools for a while now. I would be happy if we could set up a 5 minute call to talk a bit more about the position. Thank you in advance! ${currentUserName}`;
     const message = 'test message';
 
-    const data = {
-        name: 'Dohn Joe',
-        jobTitle: 'Engineer of Software',
-        jobCompanyName: 'Voxwise',
+    const person = {
+        name: name || 'John Doe',
+        jobTitle: job || 'Software Engineer',
+        jobCompanyName: location || 'Google',
         url: 'https://www.linkedin.com/in/john-doe-123456789/',
     };
 
@@ -47,7 +47,7 @@ export async function POST(req) {
 
     const people = await prisma.people.create({
         data: {
-            ...data,
+            ...person,
             message: message,
             userId: currentUserId,
         },
