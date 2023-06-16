@@ -9,10 +9,10 @@ import { options } from '../auth/[...nextauth]/route';
 export async function POST(req) {
     // const session = await getServerSession(options);
     // const currentUserName = session?.user?.name;
-    let data = await req.json();
-    data = data[0];
-    log(data);
-    const { name, job, location } = data;
+    // let data = await req.json();
+    // data = data[0];
+    // log(data);
+    // const { name, job, location } = data;
 
     // const user = await prisma.user.findFirst({
     //     where: {
@@ -52,6 +52,15 @@ export async function POST(req) {
     //         userId: currentUserId,
     //     },
     // });
+
+    // if status is 200, then return success message
+    if (req.status === 200) {
+        return NextResponse.json({ message: 'success message' });
+    } else if (req.status === 500) {
+        return NextResponse.json({ message: 'error message' });
+    }
+
+    // return NextResponse.json({message: 'success message'});
 }
 
 export async function GET(req) {
