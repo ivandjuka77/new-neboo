@@ -23,7 +23,7 @@ export const useBoardStore = create<BoardState>((set) => ({
 
     setBoardState: (board: Board) => set({ board }),
     updateJobsinDB(jobsId, columnId) {
-        fetch('http://localhost:3000/api/updateJobs', {
+        fetch(window.location.origin + '/api/updateJobs', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

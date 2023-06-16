@@ -14,7 +14,7 @@ export const useContactStore = create<ContactState>((set) => ({
     getContacts: async () => {
         console.log('gett')
         // fetch contacts with get method
-        const contacts = await fetch('http://localhost:3000/api/people', {
+        const contacts = await fetch(window.location.origin + '/api/people', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -30,7 +30,7 @@ export const useContactStore = create<ContactState>((set) => ({
 
     setContact: async (contactId: string) => {
         // fetch contacts with get method
-        const contact = await fetch(`http://localhost:3000/api/contacts?contactId=${contactId}`, {
+        const contact = await fetch(window.location.origin + `/api/contacts?contactId=${contactId}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -45,7 +45,7 @@ export const useContactStore = create<ContactState>((set) => ({
 
     updateContact: async (contact: Contact) => {
         // fetch contacts with get method
-        const contacts = await fetch('http://localhost:3000/api/people', {
+        const contacts = await fetch(window.location.origin + '/api/people', {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
