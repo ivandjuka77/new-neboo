@@ -7,8 +7,8 @@ import { prisma } from '@/lib/prisma';
 import { options } from '../auth/[...nextauth]/route';
 
 export async function POST(req) {
-    // const session = await getServerSession(options);
-    // const currentUserName = session?.user?.name;
+    const session = await getServerSession(options);
+    const currentUserName = session?.user?.name;
     // let data = await req.json();
     // data = data[0];
     // log(data);
