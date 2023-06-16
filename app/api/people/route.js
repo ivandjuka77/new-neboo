@@ -53,14 +53,7 @@ export async function POST(req) {
     //     },
     // });
 
-    // if status is 200, then return success message
-    if (req.status === 200) {
-        return NextResponse.json({ message: 'success message' });
-    } else if (req.status === 500) {
-        return NextResponse.json({ message: 'error message' });
-    }
-
-    // return NextResponse.json({message: 'success message'});
+    return NextResponse.json({ message: 'success message' });
 }
 
 export async function GET(req) {
