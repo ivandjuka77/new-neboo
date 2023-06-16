@@ -13,7 +13,7 @@ export const useBoardStore = create<BoardState>((set) => ({
     },
     getBoard: async () => {
         const board = await fetch(
-            'http://localhost:3000/api/getJobsByCol'
+            window.location.origin + '/api/getJobsByCol'
         ).then((res) => res.json());
 
         console.log(board, 'board');

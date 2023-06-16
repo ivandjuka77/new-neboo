@@ -15,7 +15,7 @@ const testJob = {
 const AddJobButton = () => {
     const router = useRouter();
     const handlePostJob = async () => {
-        const res = await fetch('http://localhost:3000/api/jobs', {
+        const res = await fetch(window.location.origin + '/api/jobs', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
