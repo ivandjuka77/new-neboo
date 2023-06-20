@@ -54,9 +54,9 @@ export const options = {
             },
         }),
     ],
-    pages: {
-        signIn: '/auth/signin',
-    },
+    // pages: {
+    //     signIn: '/auth/signin',
+    // },
 };
 
 const handler = NextAuth(options);
