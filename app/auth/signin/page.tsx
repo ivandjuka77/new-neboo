@@ -11,7 +11,7 @@ const SignIn = async () => {
 
     return (
         <div className="flex items-center justify-center">
-            {providers.github.name}
+            {/* {providers.github.name} */}
             <LoginCard providers={providers} />
         </div>
     );
