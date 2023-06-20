@@ -13,6 +13,7 @@ import {
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Icons } from '@/components/icons';
+import SignIn from '@/app/auth/signin/page';
 
 const handleClick = async () => {
     await signIn('credentials', {
@@ -55,7 +56,7 @@ export function LoginCard({ providers }: any) {
                     </div>
                 </div>
                 <div className="grid grid-cols-2 gap-6">
-                    {providers
+                    {/* {providers
                         ? Object.values(providers).map((provider: any) => (
                               <Button
                                   variant="outline"
@@ -72,7 +73,11 @@ export function LoginCard({ providers }: any) {
                                   {provider.name}
                               </Button>
                           ))
-                        : ''}
+                        : ''} */}
+                    <Button variant="outline" onClick={() => signIn()}>
+                        {' '}
+                        Sign in test
+                    </Button>
                     <Button variant="outline" onClick={handleClick}>
                         Credentaiols
                     </Button>
