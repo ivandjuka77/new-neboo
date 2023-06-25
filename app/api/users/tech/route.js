@@ -60,5 +60,14 @@ export async function POST(req) {
 // Return server session user
 export async function GET(req) {
     const session = await getServerSession(options);
-    return NextResponse.json(session);
+
+    const userName = prisma.user.findFirst({
+        where: {
+            name: session?.user?.name,
+        },
+    });
+
+    if (userName) {
+        return NextResponse.json(userName);
+    } else return NextResponse.json('No user found');
 }

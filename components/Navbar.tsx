@@ -1,5 +1,8 @@
+/*global chrome*/
+
 import Link from 'next/link';
 
+import SendTokenButton from './SendTokenButton';
 import { SignInButton } from './buttons';
 import { ThemeToggle } from './theme-toggle';
 
@@ -95,6 +98,9 @@ const Navbar = () => {
                         </li>
                         <li className="pl-10">
                             <ThemeToggle />
+                        </li>
+                        <li>
+                            <SendTokenButton />
                         </li>
                     </ul>
                 </div>
