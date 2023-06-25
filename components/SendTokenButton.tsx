@@ -11,7 +11,7 @@ const sendTokenToChromeExtension = ({ extensionId, jwt }: any) => {
 const SendTokenButton = () => {
     const handleSendToken = async () => {
         const req = await sendTokenToChromeExtension({
-            extensionId: 'fmfpjbbemghjpeibbkklfficcaljbljg',
+            extensionId: 'khmaedeenjbbmohcgeeejhahckbdpifi',
             jwt: 'jwt',
         });
         console.log('req ::: ', req);
