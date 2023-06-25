@@ -105,7 +105,7 @@ const KanbanTable = () => {
         }
     };
     return (
-        <div className=" ml-[100px] grid w-full grid-cols-5 ">
+        <div className=" ml-[100px] grid w-[2000px] grid-cols-5 ">
             {
                 <DragDropContext onDragEnd={handleOnDragEnd}>
                     {board?.columns.map((column, i) => (

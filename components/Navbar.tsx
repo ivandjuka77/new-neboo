@@ -5,10 +5,10 @@ import { ThemeToggle } from './theme-toggle';
 
 const Navbar = () => {
     return (
-        <nav className="fixed w-full border-gray-200 bg-white dark:bg-gray-900">
-            <div className=" mx-20 flex flex-wrap items-center justify-between p-4">
+        <nav className="fixed w-full border-gray-200 bg-white dark:bg-gray-900 font-sans">
+            <div className=" mx-10 flex flex-wrap items-center justify-between p-4">
                 <Link href="/" className="flex items-center">
-                    <span className="self-center whitespace-nowrap text-4xl font-semibold text-black dark:text-white">
+                    <span className="self-center whitespace-nowrap text-4xl font-bold  text-black dark:text-white">
                         neboo<span className="text-base ">/dev</span>
                     </span>
                 </Link>
@@ -38,7 +38,7 @@ const Navbar = () => {
                     className="hidden w-full md:block md:w-auto"
                     id="navbar-default"
                 >
-                    <ul className="mt-4 flex flex-col items-center rounded-lg border border-gray-100 bg-gray-50 p-4 font-medium dark:border-gray-700 dark:bg-gray-800 md:mt-0 md:flex-row md:space-x-8 md:border-0 md:bg-white md:p-0 md:dark:bg-gray-900">
+                    <ul className="mt-4  flex flex-col items-center rounded-lg border border-gray-100 bg-gray-50 p-4 font-semibold tracking-tight dark:border-gray-700 dark:bg-gray-800 md:mt-0 md:flex-row md:space-x-8 md:border-0 md:bg-white md:p-0 md:dark:bg-gray-900">
                         <li>
                             <a
                                 href="#"
@@ -93,7 +93,7 @@ const Navbar = () => {
                         <li>
                             <SignInButton />
                         </li>
-                        <li>
+                        <li className="pl-10">
                             <ThemeToggle />
                         </li>
                     </ul>

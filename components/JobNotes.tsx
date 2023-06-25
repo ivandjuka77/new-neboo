@@ -56,7 +56,7 @@ export function JobNotes({
                         <Textarea
                             placeholder="Type your notes here..."
                             value={notes || ''}
-                            className="w-full resize-none border-0 focus:border-gray-300 focus:ring-0 lg:h-32 xl:h-40"
+                            className="w-full resize-none border-0 focus:border-0 focus:ring-0 lg:h-32 xl:h-40"
                             onChange={(e) => {
                                 // Display the save button if the user inputs text
                                 const btn = document.getElementById('save');

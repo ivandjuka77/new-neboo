@@ -25,7 +25,7 @@ const JobsColumn = (props: any) => {
                     <div
                         {...provided.droppableProps}
                         ref={provided.innerRef}
-                        className={`duration-400 mt-5 h-full w-10/12 rounded-lg pb-5 transition ease-in-out ${
+                        className={`duration-400 mt-5 h-full w-9/12 rounded-lg pb-5 transition ease-in-out ${
                             snapshot.isDraggingOver ? 'bg-gray-900' : ''
                         }`}
                     >

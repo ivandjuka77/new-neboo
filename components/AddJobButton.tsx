@@ -28,7 +28,7 @@ const AddJobButton = () => {
     return (
         <Button
             variant="outline"
-            className="mt-3 w-10/12"
+            className="mt-3 w-8/12"
             onClick={handlePostJob}
         >
             +

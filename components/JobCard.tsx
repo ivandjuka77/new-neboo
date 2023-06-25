@@ -69,7 +69,7 @@ export function JobCard({
                         </span>
                     </SheetTitle>
                     <SheetDescription>
-                        <div className="mt-5">
+                        <div className="mt-3">
                             <span className="text-lg font-bold tracking-tight">
                                 Location: {job.location}
                             </span>
@@ -78,7 +78,7 @@ export function JobCard({
                                 Type: {job.type}
                             </span>
                             <br />
-                            <div className="grid grid-cols-2 grid-rows-3  gap-x-5">
+                            <div className="grid grid-cols-2 grid-rows-3 gap-x-5">
                                 <ContactCard job={job} />
                                 <Card
                                     className={cn('mt-5', className)}
@@ -130,10 +130,10 @@ export function JobCard({
                                 </Card>
 
                                 <JobNotes jobid={job.id} jobnote={job.notes} />
-
-                                <div className="mt-10 flex justify-between">
-                                    <DeleteJob jobid={job.id} />
-                                </div>
+                                <JobNotes jobid={job.id} jobnote={job.notes} />
+                            </div>
+                            <div className="mt-10 flex justify-between">
+                                <DeleteJob jobid={job.id} />
                             </div>
                         </div>
                     </SheetDescription>
