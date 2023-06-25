@@ -1,3 +1,4 @@
+/*global chrome*/
 'use client';
 
 import { useEffect } from 'react';
@@ -14,6 +15,14 @@ import AddJobButton from '@/components/AddJobButton';
 
 import JobsColumn from './JobsColumn';
 
+const sendTokenToChromeExtension = () => {
+    const extensionId = 'khmaedeenjbbmohcgeeejhahckbdpifi';
+    chrome.runtime.sendMessage(extensionId, { jwt: '123' }, (response: any) => {
+        if (!response.success) console.log('Error ::: ', response.message);
+        console.log('Sucesss ::: ', response.message);
+    });
+};
+
 const KanbanTable = () => {
     const [getBoard] = useBoardStore((state) => [state.getBoard]);
     const setBoardState = useBoardStore((state) => state.setBoardState);
@@ -22,6 +31,7 @@ const KanbanTable = () => {
 
     useEffect(() => {
         getBoard();
+        sendTokenToChromeExtension();
     }, [getBoard]);
 
     console.log(board, 'this is the board');
