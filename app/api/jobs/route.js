@@ -7,6 +7,11 @@ import { prisma } from '@/lib/prisma';
 import { options } from '../auth/[...nextauth]/route';
 
 export async function POST(req) {
+    const corsHeaders = {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+    };
     const session = await getServerSession(options);
     const currentUserName = session?.user?.name;
     let data = await req.json();
@@ -35,12 +40,12 @@ export async function POST(req) {
         },
     });
     console.log('123');
-    return {
-        status: 200,
-        body: {
-            message: 'Job created',
+    return NextResponse.json(
+        {
+            message: `${job.id} created`,
         },
-    };
+        { headers: corsHeaders }
+    );
 }
 
 export async function DELETE(req) {
