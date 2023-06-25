@@ -1,3 +1,4 @@
+import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 
 import { prisma } from '@/lib/prisma';
@@ -59,5 +60,5 @@ export async function POST(req) {
 // Return server session user
 export async function GET(req) {
     const session = await getServerSession(options);
-    return session;
+    return NextResponse.json(session);
 }
