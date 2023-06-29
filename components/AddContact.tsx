@@ -20,7 +20,7 @@ import {
 
 const AddContact = ({ contacts, jobId }: any) => {
     console.log(contacts, 'contactssssss');
-    console.log(jobId, 'jobId');
+    console.log(jobId, 'jobId2');
 
     const [open, setOpen] = useState(false);
     const [closed, setClosed] = useState(false);
