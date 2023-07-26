@@ -1,4 +1,6 @@
 import {
+    Bookmark,
+    BookmarkPlus,
     Chrome,
     GripVertical,
     LucideProps,
@@ -13,6 +15,8 @@ export type Icon = LucideIcon;
 
 export const Icons = {
     sun: SunMedium,
+    bookmark: Bookmark,
+    bookmarkPlus: BookmarkPlus,
     moon: Moon,
     twitter: Twitter,
     user: User,

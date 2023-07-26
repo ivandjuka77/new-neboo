@@ -75,6 +75,11 @@ const KanbanTable = () => {
                 return column;
             });
 
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth',
+            });
+
             setBoardState({ ...board, columns: newColumns });
         } else if (sourceColumn !== destinationColumn) {
             const newDestinationJobs = destinationColumn.job;
@@ -100,6 +105,12 @@ const KanbanTable = () => {
             });
 
             // update to db
+            console.log('finsiehedddd');
+            // window.scrollTo(window.scrollX, 0);
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth',
+            });
 
             // update the moved job to the new column
             updateJobsinDB(draggableId, destinationColumn.id);

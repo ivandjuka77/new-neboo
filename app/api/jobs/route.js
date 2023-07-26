@@ -40,12 +40,6 @@ export async function POST(req) {
         },
     });
     console.log('123');
-    return NextResponse.json(
-        {
-            message: `${job.id} created`,
-        },
-        { headers: corsHeaders }
-    );
 }
 
 export async function DELETE(req) {

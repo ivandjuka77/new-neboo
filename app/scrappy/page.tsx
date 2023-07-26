@@ -43,7 +43,7 @@ const Scrappy = async () => {
         },
     });
 
-    // const formattedDate = Moment(users[0].createdAt).format('DD.MM.YYYY');
+    const formattedDate = Moment(users[0].createdAt).format('DD.MM.YYYY');
     return (
         <div className="">
             <Table>
@@ -65,7 +65,7 @@ const Scrappy = async () => {
                             key={person.id}
                             className="text-black dark:text-white"
                         >
-                            {/* <TableCell>{formattedDate}</TableCell> */}
+                            <TableCell>{formattedDate}</TableCell>
                             <TableCell className="font-medium">
                                 <a
                                     href={person.url}

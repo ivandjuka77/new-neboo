@@ -30,45 +30,45 @@ import { Input } from '@/components/ui/input';
 
 const AddPerson = () => {
     async function fetchData(link: string) {
-        // const url = `https://linkedin-profiles1.p.rapidapi.com/extract?url=${link}`;
-        // const options = {
-        //     method: 'GET',
-        //     headers: {
-        //         'X-RapidAPI-Key':
-        //             '1f3570d7a1msh7aaf63d2dc38c36p120ab8jsn678523f6ac2c',
-        //         'X-RapidAPI-Host': 'linkedin-profiles1.p.rapidapi.com',
-        //     },
-        // };
-
-        // try {
-        //     const response = await fetch(url, options);
-        //     let result: any = await response.text();
-        //     result = JSON.parse(result);
-        //     result = result?.graph['@graph'][0];
-
-        //     const body = [
-        //         {
-        //             name: result?.name,
-        //             jobTitle: result?.jobTitle[0],
-        //             jobCompanyName: result?.worksFor[0]?.name,
-        //             url: link,
-        //         },
-        //     ];
-
-        // make a post request to /api/people with the data
-        await fetch('/api/people', {
-            method: 'POST',
+        const url = `https://linkedin-profiles1.p.rapidapi.com/extract?url=${link}`;
+        const options = {
+            method: 'GET',
             headers: {
-                'Content-Type': 'application/json',
+                'X-RapidAPI-Key':
+                    '1f3570d7a1msh7aaf63d2dc38c36p120ab8jsn678523f6ac2c',
+                'X-RapidAPI-Host': 'linkedin-profiles1.p.rapidapi.com',
             },
-            // body: JSON.stringify(body),
-        });
+        };
 
-        setOpen(false);
-        // return data;
-        // } catch (error) {
-        //     console.error(error);
-        // }
+        try {
+            const response = await fetch(url, options);
+            let result: any = await response.text();
+            result = JSON.parse(result);
+            result = result?.graph['@graph'][0];
+
+            const body = [
+                {
+                    name: result?.name,
+                    jobTitle: result?.jobTitle[0],
+                    jobCompanyName: result?.worksFor[0]?.name,
+                    url: link,
+                },
+            ];
+
+            // make a post request to /api/people with the data
+            await fetch('/api/people', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(body),
+            });
+
+            setOpen(false);
+            // return data;
+        } catch (error) {
+            console.error(error);
+        }
     }
     const router = useRouter();
 
