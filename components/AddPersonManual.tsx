@@ -1,21 +1,11 @@
 'use client';
 
-import { SyntheticEvent, useState } from 'react';
+import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Divide, Loader2 } from 'lucide-react';
+import { Loader2 } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 
-import {
-    AlertDialog,
-    AlertDialogAction,
-    AlertDialogCancel,
-    AlertDialogContent,
-    AlertDialogDescription,
-    AlertDialogFooter,
-    AlertDialogHeader,
-    AlertDialogTitle,
-    AlertDialogTrigger,
-} from '@/components/ui/alert-dialog';
+import { AlertDialogCancel } from '@/components/ui/alert-dialog';
 import { Button } from '@/components/ui/button';
 import {
     Form,
@@ -36,7 +26,6 @@ type FormData = {
 
 const AddPersonManual = () => {
     const onSubmit = async (formData: FormData) => {
-        console.log(formData);
         setLoading(true);
         const body = [
             {
@@ -59,9 +48,8 @@ const AddPersonManual = () => {
         router.refresh();
         setLoading(false);
         form.setValue('name', '');
-        // form.setValue('jobTitle', '');
-        // form.setValue('jobCompanyName', '');
-        // form.setValue('url', '');
+        form.setValue('jobTitle', '');
+        form.setValue('jobCompanyName', '');
     };
     const form = useForm<FormData>();
     const router = useRouter();
@@ -71,7 +59,7 @@ const AddPersonManual = () => {
     return (
         <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
-                <h6 className="tracking-tight text-lg font-bold text-center">
+                <h6 className="text-center text-lg font-bold tracking-tight">
                     Add a person manually
                 </h6>
                 <FormField
@@ -79,7 +67,6 @@ const AddPersonManual = () => {
                     name="name"
                     render={({ field }) => (
                         <FormItem>
-                            {/* <FormLabel>Link</FormLabel> */}
                             <FormControl>
                                 <Input {...field} placeholder="Name" />
                             </FormControl>
@@ -95,7 +82,6 @@ const AddPersonManual = () => {
                     name="jobTitle"
                     render={({ field }) => (
                         <FormItem>
-                            {/* <FormLabel>Link</FormLabel> */}
                             <FormControl>
                                 <Input {...field} placeholder="Job Title" />
                             </FormControl>
@@ -112,7 +98,6 @@ const AddPersonManual = () => {
                     name="jobCompanyName"
                     render={({ field }) => (
                         <FormItem>
-                            {/* <FormLabel>Link</FormLabel> */}
                             <FormControl>
                                 <Input {...field} placeholder="Company Name" />
                             </FormControl>
@@ -123,7 +108,7 @@ const AddPersonManual = () => {
                         </FormItem>
                     )}
                 />
-                <div className="flex justify-between w-full">
+                <div className="flex w-full justify-between">
                     {/* <AlertDialogAction></AlertDialogAction> */}
                     <Button type="submit" variant="outline" className="mr-3">
                         {loading ? (

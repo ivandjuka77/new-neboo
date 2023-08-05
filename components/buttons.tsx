@@ -1,10 +1,9 @@
 'use client';
 
-import React, { useEffect } from 'react';
-import Image from 'next/image';
+import React from 'react';
 import Link from 'next/link';
 import { Loader2 } from 'lucide-react';
-import { signIn, signOut, useSession } from 'next-auth/react';
+import { signOut, useSession } from 'next-auth/react';
 
 import { cn } from '@/lib/utils';
 import {
@@ -14,7 +13,6 @@ import {
     NavigationMenuLink,
     NavigationMenuList,
     NavigationMenuTrigger,
-    navigationMenuTriggerStyle,
 } from '@/components/ui/navigation-menu';
 import { Icons } from '@/components/icons';
 
@@ -22,7 +20,6 @@ import { Button } from './ui/button';
 
 export function SignInButton() {
     const { data: session, status } = useSession();
-    console.log(session, status);
 
     if (status === 'loading') {
         return (
@@ -127,20 +124,3 @@ const ListItem = React.forwardRef<
         </li>
     );
 });
-
-{
-    /* <ul className=' w-[200px] '>
-<NavigationMenuLink>
-    <ListItem href="/users/dashboard" title="Profile Dashboard">
-       
-        Change your technology preferences and more.
-    </ListItem>
-    <Link href={`/user/dashboard`}>Dashboard</Link>
-</NavigationMenuLink>
-<NavigationMenuLink>
-    <ListItem onClick={() => signOut()} className='flex cursor-pointer items-center justify-center'>
-        Sign out
-    </ListItem>
-</NavigationMenuLink>
-</ul> */
-}

@@ -18,10 +18,11 @@ import {
     PopoverTrigger,
 } from '@/components/ui/popover';
 
-const AddContact = ({ contacts, jobId }: any) => {
-    console.log(contacts, 'contactssssss');
-    console.log(jobId, 'jobId');
+interface jobId {
+    jobId: string;
+}
 
+const AddContact = ({ contacts }: any, { jobId }: jobId) => {
     const [open, setOpen] = useState(false);
     const [closed, setClosed] = useState(false);
     const [contactInfo, setContactInfo] = useState({
@@ -33,7 +34,7 @@ const AddContact = ({ contacts, jobId }: any) => {
         link: '',
     });
 
-    const handleContactChange = (e: any) => {
+    const handleContactChange = () => {
         fetch(window.location.origin + `/api/jobs`, {
             method: 'PATCH',
             headers: {
@@ -42,13 +43,9 @@ const AddContact = ({ contacts, jobId }: any) => {
 
             body: JSON.stringify({
                 targetJobId: jobId,
-                targetContactId: contactInfo.id,
+                targetContactId: contactInfo?.id,
             }),
-        })
-            .then((res) => res.json())
-            .then((data) => {
-                console.log(data);
-            });
+        }).then((res) => res.json());
     };
 
     return (
@@ -58,10 +55,10 @@ const AddContact = ({ contacts, jobId }: any) => {
                     <div className="flex flex-col justify-between">
                         <div className="flex flex-col">
                             <div className="text-xl font-bold">
-                                {contactInfo.name}
+                                {contactInfo?.name}
                             </div>
                             <div className="text-lg">
-                                {contactInfo.jobCompanyName}
+                                {contactInfo?.jobCompanyName}
                             </div>
                         </div>
                         <div className="mt-3 flex flex-row">
@@ -91,8 +88,8 @@ const AddContact = ({ contacts, jobId }: any) => {
                                 aria-expanded={open}
                                 className="w-[200px] justify-between"
                             >
-                                {contactInfo.name
-                                    ? contactInfo.name
+                                {contactInfo?.name
+                                    ? contactInfo?.name
                                     : 'Select contact...'}
                                 <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                             </Button>
@@ -108,7 +105,7 @@ const AddContact = ({ contacts, jobId }: any) => {
                                             onSelect={(currentName) => {
                                                 setContactInfo(
                                                     currentName ===
-                                                        contactInfo.name
+                                                        contactInfo?.name
                                                         ? {
                                                               id: '',
                                                               name: '',
@@ -137,7 +134,7 @@ const AddContact = ({ contacts, jobId }: any) => {
                                             <Check
                                                 className={cn(
                                                     'mr-2 h-4 w-4',
-                                                    contactInfo.name ===
+                                                    contactInfo?.name ===
                                                         contact.name
                                                         ? 'opacity-100'
                                                         : 'opacity-0'

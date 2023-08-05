@@ -5,10 +5,10 @@ import { useRouter } from 'next/navigation';
 import { Button } from './ui/button';
 
 const testJob = {
-    url: 'https://www.linkedin.com/jobs/collections/recommended/?currentJobId=3599005951',
+    url: 'https://www.linkedin.com',
     title: 'Frontend Developer',
-    companyName: 'Voxwise',
-    location: 'Bratislava',
+    companyName: 'Google',
+    location: 'Remote',
     type: 'Part Time',
     description: `About the role:
     Are you interested in working for top Silicon Valley and U.S. based companies? Turing’s clients are looking for passionate, experienced Front-End Engineers looking to build exceptional mobile & desktop web applications. This is an opportunity to work with a highly talented and global team of software engineers, designers, and program managers to drive forward new innovative experiences in close partnership with customers. Our projects are long term and full-time.

@@ -1,5 +1,6 @@
 import { log } from 'console';
 import { redirect } from 'next/navigation';
+import { Loader2 } from 'lucide-react';
 import Moment from 'moment';
 import { getServerSession } from 'next-auth';
 
@@ -63,6 +64,7 @@ const Scrappy = async () => {
                         <TableHead>Job Title</TableHead>
                         <TableHead>Job Company Name</TableHead>
                         <TableHead>Message</TableHead>
+                        <TableHead>{'\n'}</TableHead>
                     </TableRow>
                 </TableHeader>
                 <TableBody>

@@ -23,14 +23,12 @@ const getJobSalary = (job: any) => {
         job.job_min_salary &&
         job.job_salary_period
     ) {
-        console.log('all gucci');
         return `${job.job_salary_currency === 'USD' ? '$' : ''}${
             job.job_min_salary
         } - ${job.job_salary_currency === 'USD' ? '$' : ''}${
             job.job_max_salary
         } Per ${capitalize(job.job_salary_period.toLowerCase())}`;
     } else {
-        console.log('not gucci');
         return 'Not Listed';
     }
 };

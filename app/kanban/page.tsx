@@ -1,4 +1,5 @@
 import { redirect } from 'next/navigation';
+import { Loader2 } from 'lucide-react';
 import { getServerSession } from 'next-auth';
 
 import { prisma } from '@/lib/prisma';
@@ -36,9 +37,9 @@ const Kanban = async () => {
 
     const jobs = await getJobs();
 
-    // if (!session) {
-    //     redirect('/');
-    // }
+    if (!session) {
+        redirect('/');
+    }
     return (
         <div className="h-[calc(100vh-72px)] flex w-[1900px] flex-row overflow-y-hidden bg-background ">
             <SidebarMenu />

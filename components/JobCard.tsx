@@ -40,9 +40,11 @@ export function JobCard({
             <SheetTrigger className="w-10/12">
                 <Card className={cn('mt-1 ', className)} {...props}>
                     <CardHeader>
-                        <CardTitle className="text-left">{job.title}</CardTitle>
+                        <CardTitle className="text-left">
+                            {job?.title}
+                        </CardTitle>
                         <CardDescription>
-                            <div className="text-left">{job.companyName}</div>
+                            <div className="text-left">{job?.companyName}</div>
                         </CardDescription>
                     </CardHeader>
                 </Card>
@@ -52,28 +54,28 @@ export function JobCard({
                     <SheetTitle>
                         <div>
                             <a
-                                href={job.url}
+                                href={job?.url}
                                 target="_blank"
                                 rel="noreferrer"
                                 className=" mb-1 flex items-center"
                             >
                                 <span className="mr-4 text-4xl tracking-tight">
-                                    {job.title}
+                                    {job?.title}
                                 </span>
 
-                                <ExternalLink />
+                                <ExternalLink className="mt-2" />
                             </a>
                         </div>
 
                         <span className="text-2xl tracking-tight text-gray-400 ">
-                            {job.companyName}
+                            {job?.companyName}
                         </span>
                     </SheetTitle>
                     <SheetDescription>
                         <div className="mt-3">
                             <span className="text-lg font-bold tracking-tight">
                                 Date posted:{' '}
-                                {job.postedAt ? job.postedAt : 'N/A'}
+                                {job?.postedAt ? job?.postedAt : 'N/A'}
                             </span>
                             <br />
                             <div className="grid  grid-cols-2 gap-x-5">
@@ -89,23 +91,23 @@ export function JobCard({
                                             <div className="text-left">
                                                 <span className="text-xl font-bold tracking-tight">
                                                     Type:{' '}
-                                                    {job.type
-                                                        ? job.type
+                                                    {job?.type
+                                                        ? job?.type
                                                         : 'N/A'}
                                                 </span>
                                                 <br />
 
                                                 <span className="text-xl font-bold tracking-tight">
                                                     Location:{' '}
-                                                    {job.location
-                                                        ? job.location
+                                                    {job?.location
+                                                        ? job?.location
                                                         : 'Not Listed'}
                                                 </span>
 
                                                 <br />
                                                 <span className="text-xl font-bold tracking-tight">
                                                     Remote:{' '}
-                                                    {job.remote ? (
+                                                    {job?.remote ? (
                                                         <Check />
                                                     ) : (
                                                         'No'
@@ -115,8 +117,8 @@ export function JobCard({
                                                 <br />
                                                 <span className="text-xl font-bold tracking-tight">
                                                     Salary:{' '}
-                                                    {job.salary
-                                                        ? job.salary
+                                                    {job?.salary
+                                                        ? job?.salary
                                                         : 'Not Listed'}
                                                 </span>
                                                 <br />
@@ -130,16 +132,16 @@ export function JobCard({
                                             <div className="text-left">
                                                 <span className="text-xl font-bold tracking-tight">
                                                     Experience needed:{' '}
-                                                    {job.experience
-                                                        ? job.experience
+                                                    {job?.experience
+                                                        ? job?.experience
                                                         : 'Not Listed'}
                                                 </span>
                                                 <br />
 
                                                 <span className="text-xl font-bold tracking-tight">
                                                     Skills:{' '}
-                                                    {job.skills
-                                                        ? job.skills
+                                                    {job?.skills
+                                                        ? job?.skills
                                                         : 'Not Listed'}
                                                 </span>
                                             </div>
@@ -149,13 +151,16 @@ export function JobCard({
                                 <ContactCard job={job} />
 
                                 <JobDescription
-                                    jobid={job.id}
-                                    jobdesc={job.description}
+                                    jobid={job?.id}
+                                    jobdesc={job?.description}
                                 />
-                                <JobNotes jobid={job.id} jobnote={job.notes} />
+                                <JobNotes
+                                    jobid={job?.id}
+                                    jobnote={job?.notes}
+                                />
                             </div>
                             <div className="mt-10 flex justify-between">
-                                <DeleteJob jobid={job.id} />
+                                <DeleteJob jobid={job?.id} />
                             </div>
                         </div>
                     </SheetDescription>

@@ -6,7 +6,6 @@ import { Loader2 } from 'lucide-react';
 
 import {
     AlertDialog,
-    AlertDialogAction,
     AlertDialogCancel,
     AlertDialogContent,
     AlertDialogDescription,
@@ -29,7 +28,7 @@ const DeleteButton = ({ id }: any) => {
             method: 'DELETE',
         });
         router.refresh();
-        console.log(this);
+
         setLoading(false);
         setOpen(false);
     };

@@ -1,19 +1,14 @@
 'use client';
 
-import { SyntheticEvent, useState } from 'react';
+import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Divide, Loader2 } from 'lucide-react';
+import { Loader2 } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 
 import {
     AlertDialog,
-    AlertDialogAction,
-    AlertDialogCancel,
     AlertDialogContent,
-    AlertDialogDescription,
-    AlertDialogFooter,
     AlertDialogHeader,
-    AlertDialogTitle,
     AlertDialogTrigger,
 } from '@/components/ui/alert-dialog';
 import { Button } from '@/components/ui/button';
@@ -83,9 +78,7 @@ const AddPerson = () => {
 
     const onSubmit = async (formData: FormData) => {
         setLoading(true);
-        const link = formData.link;
-        console.log(link);
-        await fetchData(link);
+        await fetchData(formData.link);
         router.refresh();
         setLoading(false);
         form.setValue('link', '');
@@ -111,7 +104,6 @@ const AddPerson = () => {
                             name="link"
                             render={({ field }) => (
                                 <FormItem>
-                                    {/* <FormLabel>Link</FormLabel> */}
                                     <FormControl>
                                         <Input
                                             {...field}
@@ -126,8 +118,6 @@ const AddPerson = () => {
                                 </FormItem>
                             )}
                         />
-
-                        {/* <AlertDialogAction></AlertDialogAction> */}
 
                         <Button type="submit" variant="outline">
                             {loading ? (

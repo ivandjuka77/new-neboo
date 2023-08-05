@@ -58,7 +58,6 @@ const JobBoardForm = ({ setJob, setLoading }: any) => {
             }
         }
 
-        console.log(encodeURIComponent(params));
         const url = `https://jsearch.p.rapidapi.com/search?${params}`;
         const options = {
             method: 'GET',

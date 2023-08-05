@@ -3,7 +3,6 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useContactStore } from '@/store/ContactStore';
-import { Check, ChevronsUpDown } from 'lucide-react';
 
 import { cn } from '@/lib/utils';
 import {
@@ -20,32 +19,18 @@ import {
 import { Button } from '@/components/ui/button';
 import {
     Card,
-    CardContent,
     CardDescription,
     CardFooter,
     CardHeader,
     CardTitle,
 } from '@/components/ui/card';
 import { Checkbox } from '@/components/ui/checkbox';
-import {
-    Command,
-    CommandEmpty,
-    CommandGroup,
-    CommandInput,
-    CommandItem,
-} from '@/components/ui/command';
-import {
-    Popover,
-    PopoverContent,
-    PopoverTrigger,
-} from '@/components/ui/popover';
 
 import AddContact from './AddContact';
 
 const ContactCard = ({ className, ...props }: any) => {
     const router = useRouter();
     const job = props.job;
-    console.log(job, 'job');
     const [getContacts] = useContactStore((state) => [state.getContacts]);
     const [setContact] = useContactStore((state) => [state.setContact]);
     const [contacts] = useContactStore((state) => [state.contacts]);
@@ -60,11 +45,10 @@ const ContactCard = ({ className, ...props }: any) => {
     });
 
     useEffect(() => {
-        if (job.contactId) {
-            console.log(job.contactId, 'job.contactId this is the contact id');
-            setContact(job.contactId);
+        if (job?.contactId) {
+            setContact(job?.contactId);
             setContactInfo({
-                id: job.contactId,
+                id: job?.contactId,
                 name: '',
                 jobCompanyName: '',
                 jobTitle: '',
@@ -74,35 +58,29 @@ const ContactCard = ({ className, ...props }: any) => {
         } else {
             getContacts();
         }
-    }, [getContacts, job.contactId, setContact]);
-
-    console.log(contacts, 'these are the contacts');
-    console.log(contact, 'this is the contact!!!!!!!!!');
-
-    // const contactInfo.id = false;
-    // console.log(contacts, 'contactsss');
+    }, [getContacts, job?.contactId, setContact]);
 
     return (
         <Card className={cn('mt-5', className)} {...props}>
             <CardHeader>
                 <CardTitle className="text-left text-2xl">Contact</CardTitle>
                 <CardDescription>
-                    {contactInfo.id ? (
+                    {contactInfo?.id ? (
                         <div className="mt-3 flex flex-col text-left">
                             <span className="text-lg font-bold tracking-tight">
-                                Name: {contact.name}
+                                Name: {contact?.name}
                             </span>
 
                             <span className="text-lg font-bold tracking-tight">
-                                Position: {contact.jobTitle}
+                                Position: {contact?.jobTitle}
                             </span>
                         </div>
                     ) : (
-                        <AddContact contacts={contacts} jobId={job.id} />
+                        <AddContact contacts={contacts} jobId={job?.id} />
                     )}
                 </CardDescription>
             </CardHeader>
-            {contactInfo.id ? (
+            {contactInfo?.id ? (
                 <CardFooter>
                     <div className=" flex items-center space-x-2">
                         <AlertDialog>
@@ -115,7 +93,7 @@ const ContactCard = ({ className, ...props }: any) => {
                                         Your Message
                                     </AlertDialogTitle>
                                     <AlertDialogDescription>
-                                        {contact.message}
+                                        {contact?.message}
                                     </AlertDialogDescription>
                                 </AlertDialogHeader>
                                 <AlertDialogFooter>
