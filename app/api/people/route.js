@@ -1,4 +1,3 @@
-import { log } from 'console';
 import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 
@@ -10,9 +9,7 @@ export async function POST(req) {
     const session = await getServerSession(options);
     const currentUserName = session?.user?.name;
     let data = await req.json();
-    data = data[0];
-    log(data);
-    const { name, job, location } = data;
+    const { name, job, location, url } = data[0];
 
     const user = await prisma.user.findFirst({
         where: {
@@ -20,20 +17,21 @@ export async function POST(req) {
         },
     });
 
-    // // const techArray = user.tech;
+    const message = `Hi ${name || 'John Doe'},
 
-    // // const techSentence = `${techArray[0]}, ${techArray[1]} and ${techArray[2]}`;
-
-    // // console.log(techSentence, 'techArray');
-
-    // // const message = `Hi ${name}, I saw that ${jobCompanyName} is looking for new programmers and I am quite interested in the position! I am mainly a ${techSentence} programmer, so I have been working with these tools for a while now. I would be happy if we could set up a 5 minute call to talk a bit more about the position. Thank you in advance! ${currentUserName}`;
-    const message = 'test message';
+    I saw that ${
+        location || 'Google'
+    } is looking for new programmers and I am quite interested in the position!
+    I am mainly a JavaScript and React programmer, so I have been working with these tools for a while now. I would be happy if we could set up a 5 minute call to talk a bit more about the position.
+    
+    Thank you in advance!
+    ${currentUserName}`;
 
     const person = {
         name: name || 'John Doe',
-        jobTitle: job || 'Software Engineer',
+        jobTitle: job || 'Recruiter',
         jobCompanyName: location || 'Google',
-        url: 'https://www.linkedin.com/in/john-doe-123456789/',
+        url: url || 'https://www.linkedin.com',
     };
 
     // // Change to unique ID
@@ -74,7 +72,6 @@ export async function GET(req) {
 export async function DELETE(req) {
     const request = new NextRequest(req);
     const targetPersonId = request.nextUrl.searchParams.get('targetPersonId');
-    log(targetPersonId, 'this is id');
 
     const people = await prisma.people.delete({
         where: {

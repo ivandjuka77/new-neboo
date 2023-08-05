@@ -34,7 +34,7 @@ export function SignInButton() {
 
     if (status === 'authenticated') {
         return (
-            <NavigationMenu>
+            <NavigationMenu className="z-10">
                 <NavigationMenuList>
                     <NavigationMenuItem>
                         <NavigationMenuTrigger>

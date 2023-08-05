@@ -15,10 +15,17 @@ import {
 } from '@/components/ui/table';
 import AddPerson from '@/components/AddPerson';
 import DeleteButton from '@/components/DeleteButton';
-import LinkForm from '@/components/LinkForm';
 import MessageModal from '@/components/MessageModal';
 
 import { options } from '../api/auth/[...nextauth]/route';
+
+const formatDate = (date: string) => {
+    return Moment(date).format('DD.MM.YYYY');
+};
+
+const capitalize = (str: string) => {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+};
 
 const Scrappy = async () => {
     const session: any = await getServerSession(options);
@@ -43,7 +50,6 @@ const Scrappy = async () => {
         },
     });
 
-    const formattedDate = Moment(users[0].createdAt).format('DD.MM.YYYY');
     return (
         <div className="">
             <Table>
@@ -65,7 +71,9 @@ const Scrappy = async () => {
                             key={person.id}
                             className="text-black dark:text-white"
                         >
-                            <TableCell>{formattedDate}</TableCell>
+                            <TableCell>
+                                {formatDate(person.createdAt)}
+                            </TableCell>
                             <TableCell className="font-medium">
                                 <a
                                     href={person.url}
@@ -73,18 +81,20 @@ const Scrappy = async () => {
                                     rel="noreferrer"
                                     className="hover:underline"
                                 >
-                                    {person.name}
+                                    {capitalize(person.name)}
                                 </a>
                             </TableCell>
-                            <TableCell>{person.jobTitle}</TableCell>
-                            <TableCell>{person.jobCompanyName}</TableCell>
+                            <TableCell>{capitalize(person.jobTitle)}</TableCell>
+                            <TableCell>
+                                {capitalize(person.jobCompanyName)}
+                            </TableCell>
                             <TableCell>
                                 <MessageModal
                                     data-person={person.id}
                                     message={person.message}
                                 />
                             </TableCell>
-                            <TableCell className="text-right">
+                            <TableCell className="text-right ">
                                 <DeleteButton id={person.id} />
                             </TableCell>
                         </TableRow>

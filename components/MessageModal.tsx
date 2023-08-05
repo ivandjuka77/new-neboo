@@ -26,7 +26,7 @@ const MessageModal: React.FC<message> = (props: message) => {
             <AlertDialogContent className="text-black dark:text-white">
                 <AlertDialogHeader>
                     <AlertDialogTitle>Your Message</AlertDialogTitle>
-                    <AlertDialogDescription>
+                    <AlertDialogDescription className="whitespace-pre-line ">
                         {props.message}
                     </AlertDialogDescription>
                 </AlertDialogHeader>

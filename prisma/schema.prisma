@@ -78,21 +78,22 @@ model People {
 }
 
 model Job {
-  id            String   @id @unique @default(cuid())
-  url           String
-  title         String
-  companyName   String
-  location      String
-  type          String
-  userId        String
-  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  contactId     String?
-  contact       People?  @relation(fields: [contactId], references: [id], onDelete: SetNull)
-  applied       Boolean  @default(false)
-  screeningCall Boolean  @default(false)
-  interview     Boolean  @default(false)
-  offer         Boolean  @default(false)
-  notes         String   @default("")
-  createdAt     DateTime @default(now())
-  status        String   @default("potential")
+  id          String   @id @unique @default(cuid())
+  url         String
+  title       String
+  companyName String
+  location    String
+  type        String
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  contactId   String?
+  contact     People?  @relation(fields: [contactId], references: [id], onDelete: SetNull)
+  datePosted  String?
+  experience  String?
+  salary      String?
+  skills      String?
+  description String
+  notes       String   @default("")
+  createdAt   DateTime @default(now())
+  status      String   @default("potential")
 }

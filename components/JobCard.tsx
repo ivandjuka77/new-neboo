@@ -26,6 +26,7 @@ import { Textarea } from '@/components/ui/textarea';
 
 import ContactCard from './ContactCard';
 import DeleteJob from './DeleteJob';
+import { JobDescription } from './JobDescription';
 import { JobNotes } from './JobNotes';
 import { Checkbox } from './ui/checkbox';
 
@@ -71,65 +72,86 @@ export function JobCard({
                     <SheetDescription>
                         <div className="mt-3">
                             <span className="text-lg font-bold tracking-tight">
-                                Location: {job.location}
+                                Date posted:{' '}
+                                {job.postedAt ? job.postedAt : 'N/A'}
                             </span>
                             <br />
-                            <span className="text-lg font-bold tracking-tight">
-                                Type: {job.type}
-                            </span>
-                            <br />
-                            <div className="grid grid-cols-2 grid-rows-3 gap-x-5">
-                                <ContactCard job={job} />
+                            <div className="grid  grid-cols-2 gap-x-5">
                                 <Card
-                                    className={cn('mt-5', className)}
+                                    className={cn('mt-5 ', className)}
                                     {...props}
                                 >
                                     <CardHeader>
                                         <CardTitle className="text-left text-2xl">
-                                            Activities
+                                            Details
                                         </CardTitle>
                                         <CardDescription>
-                                            <div className="mt-5 flex items-center space-x-2">
-                                                <Checkbox id="applied" />
-                                                <label
-                                                    htmlFor="applied"
-                                                    className="text-md font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                                                >
-                                                    Applied
-                                                </label>
+                                            <div className="text-left">
+                                                <span className="text-xl font-bold tracking-tight">
+                                                    Type:{' '}
+                                                    {job.type
+                                                        ? job.type
+                                                        : 'N/A'}
+                                                </span>
+                                                <br />
+
+                                                <span className="text-xl font-bold tracking-tight">
+                                                    Location:{' '}
+                                                    {job.location
+                                                        ? job.location
+                                                        : 'Not Listed'}
+                                                </span>
+
+                                                <br />
+                                                <span className="text-xl font-bold tracking-tight">
+                                                    Remote:{' '}
+                                                    {job.remote ? (
+                                                        <Check />
+                                                    ) : (
+                                                        'No'
+                                                    )}
+                                                </span>
+
+                                                <br />
+                                                <span className="text-xl font-bold tracking-tight">
+                                                    Salary:{' '}
+                                                    {job.salary
+                                                        ? job.salary
+                                                        : 'Not Listed'}
+                                                </span>
+                                                <br />
                                             </div>
-                                            <div className="mt-5 flex items-center space-x-2">
-                                                <Checkbox id="call" />
-                                                <label
-                                                    htmlFor="call"
-                                                    className="text-md font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                                                >
-                                                    Screening call
-                                                </label>
-                                            </div>
-                                            <div className="mt-5 flex items-center space-x-2">
-                                                <Checkbox id="interview" />
-                                                <label
-                                                    htmlFor="interview"
-                                                    className="text-md font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                                                >
-                                                    Interview
-                                                </label>
-                                            </div>
-                                            <div className="mt-5 flex items-center space-x-2">
-                                                <Checkbox id="offer" />
-                                                <label
-                                                    htmlFor="offer"
-                                                    className="text-md font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                                                >
-                                                    Offer
-                                                </label>
+                                        </CardDescription>
+                                        <br />
+                                        <CardTitle className="text-left text-2xl">
+                                            Experience & Skills
+                                        </CardTitle>
+                                        <CardDescription>
+                                            <div className="text-left">
+                                                <span className="text-xl font-bold tracking-tight">
+                                                    Experience needed:{' '}
+                                                    {job.experience
+                                                        ? job.experience
+                                                        : 'Not Listed'}
+                                                </span>
+                                                <br />
+
+                                                <span className="text-xl font-bold tracking-tight">
+                                                    Skills:{' '}
+                                                    {job.skills
+                                                        ? job.skills
+                                                        : 'Not Listed'}
+                                                </span>
                                             </div>
                                         </CardDescription>
                                     </CardHeader>
                                 </Card>
+                                <ContactCard job={job} />
 
-                                <JobNotes jobid={job.id} jobnote={job.notes} />
+                                <JobDescription
+                                    jobid={job.id}
+                                    jobdesc={job.description}
+                                />
                                 <JobNotes jobid={job.id} jobnote={job.notes} />
                             </div>
                             <div className="mt-10 flex justify-between">

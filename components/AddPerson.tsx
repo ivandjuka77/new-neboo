@@ -2,7 +2,7 @@
 
 import { SyntheticEvent, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Loader2 } from 'lucide-react';
+import { Divide, Loader2 } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 
 import {
@@ -27,6 +27,8 @@ import {
     FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
+
+import AddPersonManual from './AddPersonManual';
 
 const AddPerson = () => {
     async function fetchData(link: string) {
@@ -88,20 +90,22 @@ const AddPerson = () => {
         setLoading(false);
         form.setValue('link', '');
     };
+
     return (
         <AlertDialog open={open} onOpenChange={setOpen}>
             <AlertDialogTrigger asChild>
                 <Button variant="outline">Add Person</Button>
             </AlertDialogTrigger>
             <AlertDialogContent className="text-black dark:text-white">
-                <AlertDialogHeader>
-                    <AlertDialogTitle>Add Person</AlertDialogTitle>
-                </AlertDialogHeader>
+                <AlertDialogHeader></AlertDialogHeader>
                 <Form {...form}>
                     <form
                         onSubmit={form.handleSubmit(onSubmit)}
-                        className="space-y-8"
+                        className="space-y-8 "
                     >
+                        <h6 className="tracking-tight text-lg font-bold text-center">
+                            Add person trough LinkedIn
+                        </h6>
                         <FormField
                             control={form.control}
                             name="link"
@@ -124,20 +128,18 @@ const AddPerson = () => {
                         />
 
                         {/* <AlertDialogAction></AlertDialogAction> */}
-                        <Button
-                            type="submit"
-                            variant="default"
-                            className="mr-3"
-                        >
+
+                        <Button type="submit" variant="outline">
                             {loading ? (
                                 <Loader2 className="h-3 w-4 animate-spin" />
                             ) : (
                                 'Submit'
                             )}
                         </Button>
-                        <AlertDialogCancel>Cancel</AlertDialogCancel>
                     </form>
                 </Form>
+                <hr className="my-4" />
+                <AddPersonManual />
             </AlertDialogContent>
         </AlertDialog>
     );

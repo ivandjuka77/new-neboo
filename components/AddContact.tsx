@@ -20,7 +20,7 @@ import {
 
 const AddContact = ({ contacts, jobId }: any) => {
     console.log(contacts, 'contactssssss');
-    console.log(jobId, 'jobId22222222');
+    console.log(jobId, 'jobId');
 
     const [open, setOpen] = useState(false);
     const [closed, setClosed] = useState(false);
@@ -82,7 +82,7 @@ const AddContact = ({ contacts, jobId }: any) => {
                     </div>
                 </div>
             ) : (
-                <div>
+                <div className="flex flex-col">
                     <Popover open={open} onOpenChange={setOpen}>
                         <PopoverTrigger asChild>
                             <Button
@@ -93,14 +93,14 @@ const AddContact = ({ contacts, jobId }: any) => {
                             >
                                 {contactInfo.name
                                     ? contactInfo.name
-                                    : 'Select framework...'}
+                                    : 'Select contact...'}
                                 <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                             </Button>
                         </PopoverTrigger>
                         <PopoverContent className="w-[200px] p-0">
                             <Command>
-                                <CommandInput placeholder="Search framework..." />
-                                <CommandEmpty>No framework found.</CommandEmpty>
+                                <CommandInput placeholder="Search contact..." />
+                                <CommandEmpty>No contact found.</CommandEmpty>
                                 <CommandGroup>
                                     {contacts.map((contact: any) => (
                                         <CommandItem

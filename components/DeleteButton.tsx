@@ -37,7 +37,9 @@ const DeleteButton = ({ id }: any) => {
     return (
         <AlertDialog open={open} onOpenChange={setOpen}>
             <AlertDialogTrigger asChild>
-                <Button variant="outline">Delete </Button>
+                <Button variant="outline" className="mr-5">
+                    Delete{' '}
+                </Button>
             </AlertDialogTrigger>
             <AlertDialogContent className="text-black dark:text-white">
                 <AlertDialogHeader>

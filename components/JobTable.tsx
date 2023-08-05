@@ -1,7 +1,8 @@
+import { Loader2 } from 'lucide-react';
+
 import {
     Table,
     TableBody,
-    TableCaption,
     TableCell,
     TableHead,
     TableHeader,
@@ -11,19 +12,7 @@ import {
 import JobDialog from './JobDialog';
 import SaveJob from './SaveJob';
 
-// {job.employer_logo ? (
-//     <Image
-//         src={job.employer_logo}
-//         alt="logo"
-//         width={30}
-//         height={30}
-//         className="rounded-full border"
-//     />
-// ) : (
-//     'no logo'
-// )}
-
-export function JobTable({ jobs }: any) {
+export function JobTable({ jobs, loading }: any) {
     const capitalize = (str: string) => {
         return str.charAt(0).toUpperCase() + str.slice(1);
     };
@@ -40,23 +29,36 @@ export function JobTable({ jobs }: any) {
                 </TableRow>
             </TableHeader>
             <TableBody>
-                {jobs.map((job: any) => (
-                    <TableRow key={job.id}>
-                        <TableCell>
-                            <SaveJob job={job} />
-                        </TableCell>
-                        <TableCell>
-                            <JobDialog job={job} />
-                        </TableCell>
-                        <TableCell>{job.employer_name}</TableCell>
-                        <TableCell>
-                            {capitalize(job.job_employment_type.toLowerCase())}
-                        </TableCell>
-                        <TableCell>
-                            {job.job_is_remote ? 'Remote' : 'Not Remote'}
+                {loading ? (
+                    <TableRow>
+                        <TableCell
+                            colSpan={5}
+                            className=" text-center h-[150px] "
+                        >
+                            <Loader2 className="animate-spin mx-auto my-auto transition-all" />
                         </TableCell>
                     </TableRow>
-                ))}
+                ) : (
+                    jobs?.map((job: any) => (
+                        <TableRow key={job.id}>
+                            <TableCell>
+                                <SaveJob job={job} />
+                            </TableCell>
+                            <TableCell>
+                                <JobDialog job={job} />
+                            </TableCell>
+                            <TableCell>{job.employer_name}</TableCell>
+                            <TableCell>
+                                {capitalize(
+                                    job.job_employment_type.toLowerCase()
+                                )}
+                            </TableCell>
+                            <TableCell>
+                                {job.job_is_remote ? 'Remote' : 'Not Remote'}
+                            </TableCell>
+                        </TableRow>
+                    ))
+                )}
             </TableBody>
         </Table>
     );
