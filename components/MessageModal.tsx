@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 
 import {
@@ -13,11 +15,22 @@ import {
 } from '@/components/ui/alert-dialog';
 import { Button } from '@/components/ui/button';
 
+import { useToast } from './ui/use-toast';
+
 interface message {
     message: string;
 }
 
 const MessageModal: React.FC<message> = (props: message) => {
+    const { toast } = useToast();
+    const handleCopy = () => {
+        navigator.clipboard.writeText(props.message);
+        toast({
+            title: 'Message Copied!',
+            description: 'Your message has been copied to clipboard.',
+        });
+    };
+
     return (
         <AlertDialog>
             <AlertDialogTrigger asChild>
@@ -32,7 +45,9 @@ const MessageModal: React.FC<message> = (props: message) => {
                 </AlertDialogHeader>
                 <AlertDialogFooter>
                     <AlertDialogCancel>Cancel</AlertDialogCancel>
-                    <AlertDialogAction>Copy</AlertDialogAction>
+                    <AlertDialogAction onClick={handleCopy}>
+                        Copy
+                    </AlertDialogAction>
                 </AlertDialogFooter>
             </AlertDialogContent>
         </AlertDialog>

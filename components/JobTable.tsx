@@ -33,9 +33,9 @@ export function JobTable({ jobs, loading }: any) {
                     <TableRow>
                         <TableCell
                             colSpan={5}
-                            className=" text-center h-[150px] "
+                            className=" h-[150px] text-center "
                         >
-                            <Loader2 className="animate-spin mx-auto my-auto transition-all" />
+                            <Loader2 className="m-auto animate-spin transition-all" />
                         </TableCell>
                     </TableRow>
                 ) : (

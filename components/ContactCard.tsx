@@ -6,18 +6,6 @@ import { useContactStore } from '@/store/ContactStore';
 
 import { cn } from '@/lib/utils';
 import {
-    AlertDialog,
-    AlertDialogAction,
-    AlertDialogCancel,
-    AlertDialogContent,
-    AlertDialogDescription,
-    AlertDialogFooter,
-    AlertDialogHeader,
-    AlertDialogTitle,
-    AlertDialogTrigger,
-} from '@/components/ui/alert-dialog';
-import { Button } from '@/components/ui/button';
-import {
     Card,
     CardDescription,
     CardFooter,
@@ -27,6 +15,7 @@ import {
 import { Checkbox } from '@/components/ui/checkbox';
 
 import AddContact from './AddContact';
+import MessageModal from './MessageModal';
 
 const ContactCard = ({ className, ...props }: any) => {
     const router = useRouter();
@@ -83,27 +72,7 @@ const ContactCard = ({ className, ...props }: any) => {
             {contactInfo?.id ? (
                 <CardFooter>
                     <div className=" flex items-center space-x-2">
-                        <AlertDialog>
-                            <AlertDialogTrigger asChild>
-                                <Button variant="outline">Show Message</Button>
-                            </AlertDialogTrigger>
-                            <AlertDialogContent className="text-black dark:text-white">
-                                <AlertDialogHeader>
-                                    <AlertDialogTitle>
-                                        Your Message
-                                    </AlertDialogTitle>
-                                    <AlertDialogDescription>
-                                        {contact?.message}
-                                    </AlertDialogDescription>
-                                </AlertDialogHeader>
-                                <AlertDialogFooter>
-                                    <AlertDialogCancel>
-                                        Cancel
-                                    </AlertDialogCancel>
-                                    <AlertDialogAction>Copy</AlertDialogAction>
-                                </AlertDialogFooter>
-                            </AlertDialogContent>
-                        </AlertDialog>
+                        <MessageModal message={contact?.message} />
                         <Checkbox id="message" />
                         <label
                             htmlFor="message"
