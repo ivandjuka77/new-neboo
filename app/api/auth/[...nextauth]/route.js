@@ -30,30 +30,35 @@ export const options = {
                     type: 'text',
                     placeholder: 'jsmith',
                 },
-                password: { label: 'Password', type: 'password' },
+                password: {
+                    label: 'Password',
+                    type: 'password',
+                    placeholder: 'jsmith',
+                },
             },
             async authorize(credentials, req) {
+                console.log('credentials', credentials);
                 const { username, password } = credentials;
-                const res = await fetch(
-                    `http://localhost:3000/api/auth/login`,
-                    {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
+                if (username === 'demo123' && password === 'demo123') {
+                    const user = await prisma.user.findUnique({
+                        where: {
+                            email: 'test@test.com',
                         },
-                        body: JSON.stringify({ username, password }),
+                    });
+
+                    console.log('user', user);
+
+                    if (user) {
+                        console.log('return user', user);
+                        return user;
                     }
-                );
-                const user = await res.json();
-                // If no error and we have user data, return it
-                if (res.ok && user) {
-                    return user;
                 }
-                // Return null if user data could not be retrieved
                 return null;
             },
         }),
     ],
+
+    debug: process.env.NODE_ENV === 'development',
     // pages: {
     //     signIn: '/auth/signin',
     // },

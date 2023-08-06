@@ -27,10 +27,11 @@ const DeleteJob = ({ jobid }: any) => {
         await fetch(`/api/jobs?targetJobId=${jobId}`, {
             method: 'DELETE',
         });
-        router.refresh();
 
         setLoading(false);
         setOpen(false);
+
+        router.refresh();
     };
 
     return (

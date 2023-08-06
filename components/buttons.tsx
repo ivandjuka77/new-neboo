@@ -21,6 +21,8 @@ import { Button } from './ui/button';
 export function SignInButton() {
     const { data: session, status } = useSession();
 
+    console.log(status, 'status', session, 'session');
+
     if (status === 'loading') {
         return (
             <Button variant="outline">

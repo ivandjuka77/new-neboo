@@ -13,6 +13,7 @@ import {
 } from '@/components/ui/card';
 
 import { Textarea } from './ui/textarea';
+import { useToast } from './ui/use-toast';
 
 type CardProps = React.ComponentProps<typeof Card>;
 
@@ -20,6 +21,7 @@ export function JobNotes({
     className,
     ...props
 }: CardProps & { jobid: string } & { jobnote: string }) {
+    const { toast } = useToast();
     const [notes, setNotes] = useState(props.jobnote || '');
     const router = useRouter();
 
@@ -40,6 +42,11 @@ export function JobNotes({
             body: JSON.stringify(payload),
         });
         router.refresh();
+        toast({
+            title: 'Notes saved!',
+            description:
+                'Your notes have been saved and will be displayed on your next visit.',
+        });
     };
     return (
         <Card className={cn('col-span-2  mt-5', className)} {...props}>

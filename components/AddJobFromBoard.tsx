@@ -2,36 +2,12 @@
 
 import { useRouter } from 'next/navigation';
 
+import { capitalize } from '@/lib/capitalize';
+import { formatDate } from '@/lib/formatDate';
+import { getJobSalary } from '@/lib/getSalary';
 import { useToast } from '@/components/ui/use-toast';
 
 import { Button } from './ui/button';
-
-const formatDate = (date: string) => {
-    const d = new Date(date);
-    // format date as dd.mm.yyyy
-    return `${d.getDate()}.${d.getMonth() + 1}.${d.getFullYear()}`;
-};
-
-const capitalize = (str: string) => {
-    return str.charAt(0).toUpperCase() + str.slice(1);
-};
-
-const getJobSalary = (job: any) => {
-    if (
-        job.job_salary_currency &&
-        job.job_max_salary &&
-        job.job_min_salary &&
-        job.job_salary_period
-    ) {
-        return `${job.job_salary_currency === 'USD' ? '$' : ''}${
-            job.job_min_salary
-        } - ${job.job_salary_currency === 'USD' ? '$' : ''}${
-            job.job_max_salary
-        } Per ${capitalize(job.job_salary_period.toLowerCase())}`;
-    } else {
-        return 'Not Listed';
-    }
-};
 
 const AddJobFromBoard = ({ job }: any) => {
     const { toast } = useToast();

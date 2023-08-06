@@ -3,6 +3,10 @@
 import React from 'react';
 import { ExternalLink } from 'lucide-react';
 
+import { capitalize } from '@/lib/capitalize';
+import { formatDate } from '@/lib/formatDate';
+import { getJobLocation } from '@/lib/getJobLocation';
+import { getJobSalary } from '@/lib/getSalary';
 import {
     Dialog,
     DialogContent,
@@ -14,26 +18,6 @@ import {
 
 import AddJobFromBoard from './AddJobFromBoard';
 import { Button } from './ui/button';
-
-const capitalize = (str: string) => {
-    return str.charAt(0).toUpperCase() + str.slice(1);
-};
-
-const formatDate = (date: string) => {
-    const d = new Date(date);
-    // format date as dd.mm.yyyy
-    return `${d.getDate()}.${d.getMonth() + 1}.${d.getFullYear()}`;
-};
-
-const getJobSalary = (job: any) => {
-    if (job) {
-        return `${job.job_salary_currency === 'USD' ? '$' : ''}${
-            job.job_min_salary
-        } - ${job.job_salary_currency === 'USD' ? '$' : ''}${
-            job.job_max_salary
-        } Per ${capitalize(job.job_salary_period.toLowerCase())}`;
-    }
-};
 
 const JobDialog = ({ job }: any) => {
     return (
@@ -65,11 +49,7 @@ const JobDialog = ({ job }: any) => {
                         {capitalize(job.job_employment_type.toLowerCase())}
                     </span>
                     <br />
-                    <span>
-                        Location: {job.job_city ? job.job_city : 'Not Listed'}
-                        {job.job_country ? ', ' + job.job_country : ''} (
-                        {job.job_is_remote ? 'Remote' : 'Not Remote'})
-                    </span>
+                    <span>Location: {getJobLocation(job)} </span>
 
                     <br />
                     <span>
