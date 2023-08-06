@@ -28,7 +28,7 @@ const capitalize = (str: string) => {
     return str.charAt(0).toUpperCase() + str.slice(1);
 };
 
-const Scrappy = async () => {
+const Contacts = async () => {
     const session: any = await getServerSession(options);
     const currentUserName = session?.user?.name;
 
@@ -106,4 +106,4 @@ const Scrappy = async () => {
         </div>
     );
 };
-export default Scrappy;
+export default Contacts;

@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { Check, ChevronsUpDown } from 'lucide-react';
 
 import { cn } from '@/lib/utils';
@@ -17,12 +18,12 @@ import {
     PopoverContent,
     PopoverTrigger,
 } from '@/components/ui/popover';
+import { useToast } from '@/components/ui/use-toast';
 
-interface jobId {
-    jobId: string;
-}
+const AddContact = ({ contacts, jobId }: any) => {
+    const { toast } = useToast();
+    const router = useRouter();
 
-const AddContact = ({ contacts }: any, { jobId }: jobId) => {
     const [open, setOpen] = useState(false);
     const [closed, setClosed] = useState(false);
     const [contactInfo, setContactInfo] = useState({
@@ -46,6 +47,11 @@ const AddContact = ({ contacts }: any, { jobId }: jobId) => {
                 targetContactId: contactInfo?.id,
             }),
         }).then((res) => res.json());
+        router.refresh();
+        toast({
+            title: 'Successfully added contact!',
+            description: 'The contact will be updated on your next refresh.',
+        });
     };
 
     return (

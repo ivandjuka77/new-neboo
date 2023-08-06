@@ -17,6 +17,7 @@ import {
     FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
+import { useToast } from '@/components/ui/use-toast';
 
 type FormData = {
     name: string;
@@ -25,6 +26,7 @@ type FormData = {
 };
 
 const AddPersonManual = () => {
+    const { toast } = useToast();
     const onSubmit = async (formData: FormData) => {
         setLoading(true);
         const body = [
@@ -50,6 +52,10 @@ const AddPersonManual = () => {
         form.setValue('name', '');
         form.setValue('jobTitle', '');
         form.setValue('jobCompanyName', '');
+        toast({
+            title: 'Successfully added person!',
+            description: 'The person will now be available to add to jobs.',
+        });
     };
     const form = useForm<FormData>();
     const router = useRouter();

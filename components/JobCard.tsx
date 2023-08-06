@@ -1,34 +1,27 @@
 'use client';
 
-import { BellRing, Check, ExternalLink, Link } from 'lucide-react';
+import { Check, ExternalLink } from 'lucide-react';
 
 import { cn } from '@/lib/utils';
-import { Button } from '@/components/ui/button';
 import {
     Card,
-    CardContent,
     CardDescription,
-    CardFooter,
     CardHeader,
     CardTitle,
 } from '@/components/ui/card';
 import {
     Sheet,
-    SheetClose,
     SheetContent,
     SheetDescription,
-    SheetFooter,
     SheetHeader,
     SheetTitle,
     SheetTrigger,
 } from '@/components/ui/sheet';
-import { Textarea } from '@/components/ui/textarea';
 
 import ContactCard from './ContactCard';
 import DeleteJob from './DeleteJob';
 import { JobDescription } from './JobDescription';
 import { JobNotes } from './JobNotes';
-import { Checkbox } from './ui/checkbox';
 
 export function JobCard({
     className,
@@ -37,10 +30,10 @@ export function JobCard({
 }: CardProps & { job: Job }) {
     return (
         <Sheet>
-            <SheetTrigger className="w-10/12">
+            <SheetTrigger className="w-10/12 ">
                 <Card className={cn('mt-1 ', className)} {...props}>
                     <CardHeader>
-                        <CardTitle className="text-left">
+                        <CardTitle className="w-[190px] truncate text-left">
                             {job?.title}
                         </CardTitle>
                         <CardDescription>

@@ -5,7 +5,7 @@ import { ThemeToggle } from './theme-toggle';
 
 const Navbar = () => {
     return (
-        <nav className="fixed w-full border-gray-200 bg-white dark:bg-gray-900 font-sans z-10">
+        <nav className="fixed z-10 w-full border-gray-200 bg-white font-sans dark:bg-gray-900">
             <div className=" mx-10 flex flex-wrap items-center justify-between p-4">
                 <Link href="/" className="flex items-center">
                     <span className="self-center whitespace-nowrap text-4xl font-bold  text-black dark:text-white">
@@ -40,22 +40,13 @@ const Navbar = () => {
                 >
                     <ul className="mt-4  flex flex-col items-center rounded-lg border border-gray-100 bg-gray-50 p-4 font-semibold tracking-tight dark:border-gray-700 dark:bg-gray-800 md:mt-0 md:flex-row md:space-x-8 md:border-0 md:bg-white md:p-0 md:dark:bg-gray-900">
                         <li>
-                            <a
-                                href="#"
+                            <Link
+                                href={'/'}
                                 className="block rounded py-2 pl-3 pr-4 text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:bg-transparent md:dark:hover:text-blue-500"
-                                aria-current="page"
                             >
                                 Home
-                            </a>
+                            </Link>
                         </li>
-                        {/* <li>
-                            <a
-                                href="#"
-                                className="block rounded py-2 pl-3 pr-4 text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:bg-transparent md:dark:hover:text-blue-500"
-                            >
-                                About
-                            </a>
-                        </li> */}
                         <li>
                             <a
                                 href="https://neboo.co/blog"
@@ -68,10 +59,10 @@ const Navbar = () => {
                         </li>
                         <li>
                             <Link
-                                href={'/scrappy'}
+                                href={'/contacts'}
                                 className="block rounded py-2 pl-3 pr-4 text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:bg-transparent md:dark:hover:text-blue-500"
                             >
-                                Scrappy
+                                Contacts
                             </Link>
                         </li>
                         <li>
@@ -79,16 +70,16 @@ const Navbar = () => {
                                 href={'/kanban'}
                                 className="block rounded py-2 pl-3 pr-4 text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:bg-transparent md:dark:hover:text-blue-500"
                             >
-                                Kanban
+                                Kanban Board
                             </Link>
                         </li>
                         <li>
-                            <a
-                                href="#"
+                            <Link
+                                href={'/jobs'}
                                 className="block rounded py-2 pl-3 pr-4 text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:bg-transparent md:dark:hover:text-blue-500"
                             >
-                                Contact
-                            </a>
+                                Job Board
+                            </Link>
                         </li>
                         <li>
                             <SignInButton />

@@ -41,14 +41,13 @@ type FormData = {
     date_posted: string;
     employment_types: string;
     job_requirements: string;
-    remote_job_only: boolean;
+    remote_jobs_only: boolean;
 };
 
 const JobBoardForm = ({ setJob, setLoading }: any) => {
     const form = useForm<FormData>();
     const onSubmit = async (formData: FormData) => {
         setLoading(true);
-        console.log(formData);
 
         // for each key in formData, if the value is not undefined, add it to the params string
         let params = '';
@@ -58,7 +57,10 @@ const JobBoardForm = ({ setJob, setLoading }: any) => {
             }
         }
 
-        const url = `https://jsearch.p.rapidapi.com/search?${params}`;
+        const url = `https://jsearch.p.rapidapi.com/search?${params.slice(
+            0,
+            -1
+        )}`;
         const options = {
             method: 'GET',
             headers: {
@@ -73,8 +75,13 @@ const JobBoardForm = ({ setJob, setLoading }: any) => {
             const result = await response.text();
             const data = JSON.parse(result);
 
-            setJob(data.data);
-            console.log(data.data);
+            if (data.data.length > 0) {
+                setJob(data.data);
+
+                console.log(data.data);
+            } else {
+                alert('No jobs found');
+            }
         } catch (error) {
             console.error(error);
         }
@@ -83,9 +90,9 @@ const JobBoardForm = ({ setJob, setLoading }: any) => {
     };
 
     return (
-        <Card className="w-[1000px] mt-5 border-none">
+        <Card className="mt-5 w-[1000px] border-none">
             <CardHeader className="text-center">
-                <CardTitle className="text-2xl tracking-tight font-bold">
+                <CardTitle className="text-2xl font-bold tracking-tight">
                     Job Search
                 </CardTitle>
                 <CardDescription className="text-md">
@@ -104,7 +111,6 @@ const JobBoardForm = ({ setJob, setLoading }: any) => {
                             name="query"
                             render={({ field }) => (
                                 <FormItem>
-                                    {/* <FormLabel>Link</FormLabel> */}
                                     <FormControl>
                                         <Input
                                             {...field}
@@ -255,10 +261,10 @@ const JobBoardForm = ({ setJob, setLoading }: any) => {
                         </Accordion>
                         <FormField
                             control={form.control}
-                            name="remote_job_only"
+                            name="remote_jobs_only"
                             render={({ field }) => (
-                                <FormItem className="w-full flex flex-row justify-center items-center">
-                                    <div className="space-y-0.5 mr-4 mt-1 ">
+                                <FormItem className="flex w-full flex-row items-center justify-center">
+                                    <div className="mr-4 mt-1 space-y-0.5 ">
                                         <FormLabel className="text-base">
                                             Remote Only
                                         </FormLabel>

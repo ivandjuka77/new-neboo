@@ -22,10 +22,12 @@ import {
     FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
+import { useToast } from '@/components/ui/use-toast';
 
 import AddPersonManual from './AddPersonManual';
 
 const AddPerson = () => {
+    const { toast } = useToast();
     async function fetchData(link: string) {
         const url = `https://linkedin-profiles1.p.rapidapi.com/extract?url=${link}`;
         const options = {
@@ -62,6 +64,7 @@ const AddPerson = () => {
             });
 
             setOpen(false);
+
             // return data;
         } catch (error) {
             console.error(error);
@@ -79,6 +82,7 @@ const AddPerson = () => {
     const onSubmit = async (formData: FormData) => {
         setLoading(true);
         await fetchData(formData.link);
+
         router.refresh();
         setLoading(false);
         form.setValue('link', '');

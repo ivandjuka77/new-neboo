@@ -84,12 +84,12 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    /* font-family: 'Poppins', sans-serif; */
+    font-family: 'Inter', sans-serif;
 }
 
 body,
 html {
-    /* font-family: 'Poppins', sans-serif; */
+    font-family: 'Inter', sans-serif;
     color: #ffffff;
     background-color: #000000;
     /* font-size: 62.5%; */
