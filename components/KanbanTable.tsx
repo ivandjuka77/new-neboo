@@ -1,27 +1,10 @@
-/*global chrome*/
 'use client';
 
 import { useEffect } from 'react';
 import { useBoardStore } from '@/store/BoardStore';
-import {
-    DragDropContext,
-    Draggable,
-    DropResult,
-    Droppable,
-} from 'react-beautiful-dnd';
-
-import { Button } from '@/components/ui/button';
-import AddJobButton from '@/components/AddJobButton';
+import { DragDropContext, DropResult } from 'react-beautiful-dnd';
 
 import JobsColumn from './JobsColumn';
-
-const sendTokenToChromeExtension = () => {
-    const extensionId = 'khmaedeenjbbmohcgeeejhahckbdpifi';
-    chrome.runtime.sendMessage(extensionId, { jwt: '123' }, (response: any) => {
-        if (!response.success) console.log('Error ::: ', response.message);
-        console.log('Sucesss ::: ', response.message);
-    });
-};
 
 const KanbanTable = () => {
     const [getBoard] = useBoardStore((state) => [state.getBoard]);
@@ -31,10 +14,7 @@ const KanbanTable = () => {
 
     useEffect(() => {
         getBoard();
-        sendTokenToChromeExtension();
     }, [getBoard]);
-
-    console.log(board, 'this is the board');
 
     const handleOnDragEnd = (result: DropResult) => {
         const { source, destination, draggableId } = result;
@@ -104,8 +84,6 @@ const KanbanTable = () => {
                 return column;
             });
 
-            // update to db
-            console.log('finsiehedddd');
             // window.scrollTo(window.scrollX, 0);
             window.scrollTo({
                 top: 0,
@@ -114,13 +92,6 @@ const KanbanTable = () => {
 
             // update the moved job to the new column
             updateJobsinDB(draggableId, destinationColumn.id);
-
-            console.log(
-                'the job',
-                draggableId,
-                'was moved to column',
-                destinationColumn.id
-            );
 
             setBoardState({ ...board, columns: newColumns });
         }

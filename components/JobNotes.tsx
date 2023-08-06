@@ -7,9 +7,7 @@ import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import {
     Card,
-    CardContent,
     CardDescription,
-    CardFooter,
     CardHeader,
     CardTitle,
 } from '@/components/ui/card';
@@ -28,10 +26,6 @@ export function JobNotes({
     const saveNotes = () => {
         // get the text from the textarea
         const notes = document.querySelector('textarea')?.value;
-        console.log(notes, 'notes');
-
-        // save the text to the database
-        console.log(notes);
 
         const payload = {
             notes: notes,

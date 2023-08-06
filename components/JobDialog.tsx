@@ -12,7 +12,6 @@ import {
     DialogTrigger,
 } from '@/components/ui/dialog';
 
-import AddJobButton from './AddJobButton';
 import AddJobFromBoard from './AddJobFromBoard';
 import { Button } from './ui/button';
 
@@ -27,21 +26,12 @@ const formatDate = (date: string) => {
 };
 
 const getJobSalary = (job: any) => {
-    if (
-        job.job_salary_currency &&
-        job.job_max_salary &&
-        job.job_min_salary &&
-        job.job_salary_period
-    ) {
-        console.log('all gucci');
+    if (job) {
         return `${job.job_salary_currency === 'USD' ? '$' : ''}${
             job.job_min_salary
         } - ${job.job_salary_currency === 'USD' ? '$' : ''}${
             job.job_max_salary
         } Per ${capitalize(job.job_salary_period.toLowerCase())}`;
-    } else {
-        console.log('not gucci');
-        return 'Not Listed';
     }
 };
 

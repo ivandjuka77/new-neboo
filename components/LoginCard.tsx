@@ -12,15 +12,7 @@ import {
 } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Icons } from '@/components/icons';
 import SignIn from '@/app/auth/signin/page';
-
-const handleClick = async () => {
-    await signIn('credentials', {
-        username: '21@email.com',
-        password: '123456',
-    });
-};
 
 export function LoginCard({ providers }: any) {
     return (
@@ -78,9 +70,7 @@ export function LoginCard({ providers }: any) {
                         {' '}
                         Sign in test
                     </Button>
-                    <Button variant="outline" onClick={handleClick}>
-                        Credentaiols
-                    </Button>
+                    <Button variant="outline">Credentials</Button>
                 </div>
             </CardContent>
         </Card>

@@ -41,7 +41,7 @@ const Kanban = async () => {
         redirect('/');
     }
     return (
-        <div className="h-[calc(100vh-72px)]  flex w-[1900px] flex-row  bg-background ">
+        <div className="flex  h-[calc(100vh-72px)] w-[1900px] flex-row  bg-background ">
             <SidebarMenu />
 
             <KanbanTable />

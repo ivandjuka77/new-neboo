@@ -1,6 +1,6 @@
 'use client';
 
-import { SyntheticEvent, useState } from 'react';
+import { SyntheticEvent } from 'react';
 import { useRouter } from 'next/navigation';
 
 async function fetchData(link: string) {
@@ -28,7 +28,6 @@ async function fetchData(link: string) {
                 url: link,
             },
         ];
-        console.log(body);
 
         // make a post request to /api/people with the data
         await fetch('/api/people', {
@@ -50,13 +49,12 @@ const LinkForm = () => {
     const handleSubmit = async (e: SyntheticEvent<HTMLFormElement>) => {
         e.preventDefault();
         const link = (e.target as HTMLFormElement).link.value;
-        console.log(link);
         await fetchData(link);
         router.refresh();
     };
 
     return (
-        <form className="grid container" onSubmit={handleSubmit}>
+        <form className="container grid" onSubmit={handleSubmit}>
             <input type="text" id="link" name="link" placeholder="link" />
             <button type="submit">Submit</button>
         </form>
