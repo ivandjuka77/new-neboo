@@ -36,7 +36,7 @@ export function SignInButton() {
             <NavigationMenu className="z-10">
                 <NavigationMenuList>
                     <NavigationMenuItem>
-                        <NavigationMenuTrigger>
+                        <NavigationMenuTrigger className="border">
                             <Icons.user className="h-6 w-6" />
                         </NavigationMenuTrigger>
                         <NavigationMenuContent>

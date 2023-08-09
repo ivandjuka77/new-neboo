@@ -52,7 +52,7 @@ const Contacts = async () => {
     });
 
     return (
-        <div className="">
+        <div className="mt-5">
             <Table>
                 <TableCaption>
                     <AddPerson />

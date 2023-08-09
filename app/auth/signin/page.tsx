@@ -10,8 +10,18 @@ const SignIn = async () => {
     console.log(providers, 'providers');
 
     return (
-        <div className="flex items-center justify-center">
-            {/* {providers.github.name} */}
+        <div className=" mt-10 flex flex-col items-center">
+            <h1 className="text-center text-xl font-semibold tracking-tight">
+                Note: Currently the only way to login is passwordless, through
+                Google or GitHub.
+            </h1>
+            <br />
+            <h1 className="mb-20 text-center text-xl font-semibold tracking-tight text-muted-foreground">
+                This is because the current authentication strategy is not
+                compatible with the credentials option and is creating logout
+                issues. <br />
+                Apologies for the inconvenience.
+            </h1>
             <LoginCard providers={providers} />
         </div>
     );

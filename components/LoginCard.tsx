@@ -15,9 +15,11 @@ import { Label } from '@/components/ui/label';
 
 export function LoginCard({ providers }: any) {
     return (
-        <Card>
+        <Card className="p-5">
             <CardHeader className="space-y-1">
-                <CardTitle className="text-center text-2xl">Login </CardTitle>
+                <CardTitle className="text-center text-2xl">
+                    Login <br />
+                </CardTitle>
                 <CardDescription>
                     Enter your email below to login to your account.
                 </CardDescription>
@@ -29,13 +31,16 @@ export function LoginCard({ providers }: any) {
                         id="email"
                         type="email"
                         placeholder="m@example.com"
+                        disabled
                     />
                 </div>
                 <div className="grid gap-2">
                     <Label htmlFor="password">Password</Label>
-                    <Input id="password" type="password" />
+                    <Input id="password" type="password" disabled />
                 </div>
-                <Button className="w-full">Create account</Button>
+                <Button className="w-full" disabled>
+                    Create account
+                </Button>
                 <div className="relative">
                     <div className="absolute inset-0 flex items-center">
                         <span className="w-full border-t" />
@@ -46,30 +51,15 @@ export function LoginCard({ providers }: any) {
                         </span>
                     </div>
                 </div>
-                <div className="grid grid-cols-2 gap-6">
-                    {/* {providers
-                        ? Object.values(providers).map((provider: any) => (
-                              <Button
-                                  variant="outline"
-                                  onClick={() => signIn(provider.id)}
-                                  key={provider?.name}
-                              >
-                                  {provider.name === 'GitHub' ? (
-                                      <Icons.GitHub className="mr-2 h-4 w-4" />
-                                  ) : provider.name === 'Google' ? (
-                                      <Icons.chrome className="mr-2 h-4 w-4" />
-                                  ) : (
-                                      ''
-                                  )}
-                                  {provider.name}
-                              </Button>
-                          ))
-                        : ''} */}
-                    <Button variant="outline" onClick={() => signIn()}>
+                <div className="flex justify-center">
+                    <Button
+                        variant="default"
+                        className="px-7 w-[250px] h-[50px] mt-5 "
+                        onClick={() => signIn()}
+                    >
                         {' '}
-                        Sign in test
+                        Sign in with Google/GitHub
                     </Button>
-                    <Button variant="outline">Credentials</Button>
                 </div>
             </CardContent>
         </Card>

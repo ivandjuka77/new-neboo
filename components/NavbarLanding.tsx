@@ -3,13 +3,13 @@ import Link from 'next/link';
 import { SignInButton } from './buttons';
 import { ThemeToggle } from './theme-toggle';
 
-const Navbar = () => {
+const NavbarLanding = () => {
     return (
-        <nav className="fixed z-10 w-full border-b  bg-white font-sans dark:bg-background">
+        <nav className="fixed z-10 w-full border-gray-200 bg-white font-sans dark:bg-background	">
             <div className=" mx-10 flex flex-wrap items-center justify-between p-4">
                 <Link href="/" className="flex items-center">
                     <span className="self-center whitespace-nowrap text-4xl font-bold  text-black dark:text-white">
-                        neboo<span className="text-base ">/dev</span>
+                        neboo<span className="text-base ">/alpha</span>
                     </span>
                 </Link>
                 <button
@@ -38,7 +38,7 @@ const Navbar = () => {
                     className="hidden w-full md:block md:w-auto"
                     id="navbar-default"
                 >
-                    <ul className="mt-4  flex flex-col items-center rounded-lg border border-gray-100 bg-gray-50 p-4 font-semibold tracking-tight dark:border-gray-700 dark:bg-gray-800 md:mt-0 md:flex-row md:space-x-8 md:border-0 md:bg-white md:p-0 md:dark:bg-background">
+                    <ul className="mt-4  flex flex-col items-center rounded-lg border border-gray-100 bg-gray-50 p-4 font-semibold tracking-tight dark:border-gray-700 dark:bg-gray-800 md:mt-0 md:flex-row md:space-x-8 md:border-0 md:bg-white md:p-0 md:dark:bg-gray-900">
                         <li>
                             <Link
                                 href={'/'}
@@ -94,4 +94,4 @@ const Navbar = () => {
     );
 };
 
-export default Navbar;
+export default NavbarLanding;

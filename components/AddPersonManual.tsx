@@ -74,7 +74,7 @@ const AddPersonManual = () => {
                     render={({ field }) => (
                         <FormItem>
                             <FormControl>
-                                <Input {...field} placeholder="Name" />
+                                <Input {...field} placeholder="Name" autoComplete="off" />
                             </FormControl>
                             <FormDescription>
                                 Please provide the name of the person.
@@ -89,7 +89,7 @@ const AddPersonManual = () => {
                     render={({ field }) => (
                         <FormItem>
                             <FormControl>
-                                <Input {...field} placeholder="Job Title" />
+                                <Input {...field} placeholder="Job Title" autoComplete="off" />
                             </FormControl>
                             <FormDescription>
                                 Please provide the job title of the person.
@@ -105,7 +105,7 @@ const AddPersonManual = () => {
                     render={({ field }) => (
                         <FormItem>
                             <FormControl>
-                                <Input {...field} placeholder="Company Name" />
+                                <Input {...field} placeholder="Company Name" autoComplete="off" />
                             </FormControl>
                             <FormDescription>
                                 Please provide the company name of the person.
@@ -118,7 +118,7 @@ const AddPersonManual = () => {
                     {/* <AlertDialogAction></AlertDialogAction> */}
                     <Button type="submit" variant="outline" className="mr-3">
                         {loading ? (
-                            <Loader2 className="h-3 w-4 animate-spin" />
+                            <Loader2 className="h-3 w-4 animate-spin"  />
                         ) : (
                             'Submit'
                         )}

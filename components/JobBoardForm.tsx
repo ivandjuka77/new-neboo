@@ -116,6 +116,7 @@ const JobBoardForm = ({ setJob, setLoading }: any) => {
                                             {...field}
                                             placeholder="Frontend Developer in Berlin.."
                                             required
+                                            autoComplete="off"
                                         />
                                     </FormControl>
                                     <FormDescription className="text-center">
