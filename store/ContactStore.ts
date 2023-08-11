@@ -12,7 +12,6 @@ export const useContactStore = create<ContactState>((set) => ({
     contacts: Array<Contact>(),
     contact: {} as Contact,
     getContacts: async () => {
-        console.log('gett')
         // fetch contacts with get method
         const contacts = await fetch(window.location.origin + '/api/people', {
             method: 'GET',
@@ -21,24 +20,20 @@ export const useContactStore = create<ContactState>((set) => ({
             },
         }).then((res) => res.json());
 
-
-
-        console.log(contacts, 'contacts store');
-
         set({ contacts });
     },
 
     setContact: async (contactId: string) => {
         // fetch contacts with get method
-        const contact = await fetch(window.location.origin + `/api/contacts?contactId=${contactId}`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            
-        }).then((res) => res.json());
-
-        console.log(contact, 'contacts store');
+        const contact = await fetch(
+            window.location.origin + `/api/contacts?contactId=${contactId}`,
+            {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            }
+        ).then((res) => res.json());
 
         set({ contact });
     },
@@ -53,9 +48,6 @@ export const useContactStore = create<ContactState>((set) => ({
             body: JSON.stringify(contact),
         }).then((res) => res.json());
 
-        console.log(contacts, 'contacts store');
-
         set({ contacts });
-    }
-
+    },
 }));

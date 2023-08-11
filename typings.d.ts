@@ -9,6 +9,15 @@ interface Column {
     job: Job[];
 }
 
+interface Contact {
+    id: string;
+    url: string;
+    name: string;
+    jobTitle: string;
+    jobCompanyName: string;
+    message: string;
+}
+
 interface Job {
     id: string;
     url: string;
