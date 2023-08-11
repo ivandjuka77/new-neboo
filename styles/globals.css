@@ -94,3 +94,7 @@ html {
     background-color: #000000;
     /* font-size: 62.5%; */
 }
+
+.react-player video {
+    border-radius: 15px;
+}

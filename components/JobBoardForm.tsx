@@ -50,9 +50,12 @@ const JobBoardForm = ({ setJob, setLoading }: any) => {
         setLoading(true);
 
         // for each key in formData, if the value is not undefined, add it to the params string
+
         let params = '';
         for (const key in formData) {
+            // @ts-ignore
             if (formData[key] !== undefined) {
+                // @ts-ignore
                 params += `${key}=${formData[key]}&`;
             }
         }

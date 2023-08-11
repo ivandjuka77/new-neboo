@@ -9,7 +9,7 @@ const Navbar = () => {
             <div className=" mx-10 flex flex-wrap items-center justify-between p-4">
                 <Link href="/" className="flex items-center">
                     <span className="self-center whitespace-nowrap text-4xl font-bold  text-black dark:text-white">
-                        neboo<span className="text-base ">/dev</span>
+                        neboo<span className="text-base ">/alpha</span>
                     </span>
                 </Link>
                 <button
