@@ -87,6 +87,10 @@
     font-family: 'Inter', sans-serif;
 }
 
+.nextjs-toast-errors-parent {
+    display: none;
+}
+
 body,
 html {
     font-family: 'Inter', sans-serif;
