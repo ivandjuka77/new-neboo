@@ -1,18 +1,18 @@
-export type SiteConfig = typeof siteConfig
+export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
-  name: "Next.js",
-  description:
-    "Beautifully designed components built with Radix UI and Tailwind CSS.",
-  mainNav: [
-    {
-      title: "Home",
-      href: "/",
+    name: 'Neboo',
+    description:
+        'Neboo is a job search tracker that helps you organize your job search and keep track of your progress.',
+    mainNav: [
+        {
+            title: 'Home',
+            href: '/',
+        },
+    ],
+    links: {
+        twitter: 'https://twitter.com/ivandjuka77',
+        github: 'https://github.com/ivandjuka77',
+        docs: 'https://ivandjukic.com',
     },
-  ],
-  links: {
-    twitter: "https://twitter.com/shadcn",
-    github: "https://github.com/shadcn/ui",
-    docs: "https://ui.shadcn.com",
-  },
-}
+};
