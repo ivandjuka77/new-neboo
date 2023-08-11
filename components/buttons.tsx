@@ -37,13 +37,13 @@ export function SignInButton() {
                 <NavigationMenuList>
                     <NavigationMenuItem>
                         <NavigationMenuTrigger className="border">
-                            <Icons.user className="h-6 w-6" />
+                            <Icons.user className="h-6 w-6 stroke-black dark:stroke-white" />
                         </NavigationMenuTrigger>
                         <NavigationMenuContent>
                             <ul className="grid gap-3 p-6 md:w-[300px] lg:w-[400px] lg:grid-cols-[.75fr_1fr]">
                                 <li className="row-span-3">
                                     <NavigationMenuItem asChild>
-                                        <div className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md">
+                                        <div className="from-muted/50 to-muted flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b p-6 no-underline outline-none focus:shadow-md">
                                             <Icons.user className="h-6 w-6" />
                                             <div className="mb-2 mt-4 text-lg font-medium">
                                                 Welcome,{' '}
@@ -110,7 +110,7 @@ const ListItem = React.forwardRef<
                 <a
                     ref={ref}
                     className={cn(
-                        'block w-24 select-none space-y-1 rounded-md p-3  leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground',
+                        'hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground block w-24  select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors',
                         className
                     )}
                     {...props}
@@ -118,7 +118,7 @@ const ListItem = React.forwardRef<
                     <div className="text-sm font-medium leading-none">
                         {title}
                     </div>
-                    <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                    <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">
                         {children}
                     </p>
                 </a>

@@ -4,7 +4,7 @@ const loading = () => {
     return (
         <div className=" h-[calc(100vh-72px)] flex items-center justify-center ">
             <div className="scale-[2]">
-                <Loader2 className="h-3 w-4 animate-spin " />
+                <Loader2 className="h-3 w-4 animate-spin stroke-black dark:stroke-white" />
             </div>
         </div>
     );
