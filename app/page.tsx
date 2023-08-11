@@ -43,7 +43,7 @@ const MainPage = () => {
                         volume={0}
                         loop={true}
                         className="react-player"
-                        url="https://i.imgur.com/DHJpRwR.mp4"
+                        url="https://i.imgur.com/m41oKH9.mp4"
                     />
                 </CardContent>
             </Card>
@@ -54,7 +54,7 @@ const MainPage = () => {
                         volume={0}
                         loop={true}
                         className="react-player"
-                        url="https://i.imgur.com/1QTtqFq.mp4"
+                        url="https://i.imgur.com/zAJXpeH.mp4"
                     />
                 </CardContent>
                 <CardHeader className="text-left ">
@@ -89,7 +89,7 @@ const MainPage = () => {
                         volume={0}
                         loop={true}
                         className="react-player"
-                        url="https://i.imgur.com/xcsiFx5.mp4"
+                        url="https://i.imgur.com/RoMB3J2.mp4"
                     />
                 </CardContent>
             </Card>
