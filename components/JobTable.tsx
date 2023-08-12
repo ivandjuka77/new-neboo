@@ -11,7 +11,6 @@ import {
 
 import JobDialog from './JobDialog';
 import SaveJob from './SaveJob';
-import { Button } from './ui/button';
 
 export function JobTable({ jobs, loading, url }: any) {
     const capitalize = (str: string) => {

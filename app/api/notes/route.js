@@ -1,5 +1,3 @@
-import { log } from 'console';
-import { NextRequest } from 'next/server';
 import { getServerSession } from 'next-auth';
 
 import { prisma } from '@/lib/prisma';
@@ -11,7 +9,6 @@ export async function POST(req) {
     const currentUserName = session?.user?.name;
     let data = await req.json();
 
-    log(data);
     const { notes, jobId } = data;
 
     const job = await prisma.job.findUnique({
