@@ -18,7 +18,7 @@ import { Separator } from '@/components/ui/separator';
 const MainPage = () => {
     return (
         <main className="text-center">
-            <h1 className="mt-20 text-black dark:text-white text-3xl font-bold leading-tight tracking-tighter md:block md:text-5xl lg:leading-[1.1]">
+            <h1 className="mt-20 text-3xl font-bold leading-tight tracking-tighter text-black dark:text-white md:block md:text-5xl lg:leading-[1.1]">
                 Strategize your job search with Neboo
             </h1>
             <p className="mt-5 text-lg font-semibold tracking-tight text-gray-500 md:text-xl">
@@ -93,15 +93,15 @@ const MainPage = () => {
                     />
                 </CardContent>
             </Card>
-            <h1 className="mt-20 text-black dark:text-white text-3xl font-bold leading-tight tracking-tighter md:block md:text-5xl lg:leading-[1.1]">
+            <h1 className="mt-20 text-3xl font-bold leading-tight tracking-tighter text-black dark:text-white md:block md:text-5xl lg:leading-[1.1]">
                 Check out the source code
             </h1>
             <p className="mt-5 text-lg font-semibold tracking-tight text-gray-500 md:text-xl">
                 Check out the source code on GitHub and give it a star if you
                 like it!
             </p>
-            <div className="flex items-center justify-center mt-10">
-                <Card className="w-[500px] mb-16 ">
+            <div className="mt-10 flex items-center justify-center">
+                <Card className="mb-16 w-[500px] ">
                     <CardHeader className="grid grid-cols-[1fr_110px] items-start gap-4 space-y-0">
                         <div className="space-y-1">
                             <CardTitle>ivandjuka77/neboo</CardTitle>
@@ -115,7 +115,7 @@ const MainPage = () => {
                             target="_blank"
                             rel="noreferrer"
                         >
-                            <div className="flex items-center justify-center space-x-1 rounded-md bg-secondary text-secondary-foreground">
+                            <div className="bg-secondary text-secondary-foreground flex items-center justify-center space-x-1 rounded-md">
                                 <Button
                                     variant="secondary"
                                     className="px-3 shadow-none"
@@ -132,7 +132,7 @@ const MainPage = () => {
                         </a>
                     </CardHeader>
                     <CardContent>
-                        <div className="flex space-x-4 text-sm text-muted-foreground">
+                        <div className="text-muted-foreground flex space-x-4 text-sm">
                             <div className="flex items-center">
                                 <CircleIcon className="mr-1 h-3 w-3 fill-sky-400 text-sky-400" />
                                 TypeScript

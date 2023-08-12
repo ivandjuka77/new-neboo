@@ -1,4 +1,3 @@
-import { log } from 'console';
 import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 
@@ -7,16 +6,9 @@ import { prisma } from '@/lib/prisma';
 import { options } from '../auth/[...nextauth]/route';
 
 export async function POST(req) {
-    const corsHeaders = {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-    };
     const session = await getServerSession(options);
     const currentUserName = session?.user?.name;
     let data = await req.json();
-
-    log(data, 'data');
 
     const user = await prisma.user.findFirst({
         where: {
@@ -39,7 +31,6 @@ export async function POST(req) {
             userId: currentUserId,
         },
     });
-    console.log('123');
 }
 
 export async function DELETE(req) {

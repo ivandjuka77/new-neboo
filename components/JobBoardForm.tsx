@@ -44,7 +44,7 @@ type FormData = {
     remote_jobs_only: boolean;
 };
 
-const JobBoardForm = ({ setJob, setLoading }: any) => {
+const JobBoardForm = ({ setJob, setLoading, setUrl }: any) => {
     const form = useForm<FormData>();
     const onSubmit = async (formData: FormData) => {
         setLoading(true);
@@ -63,12 +63,12 @@ const JobBoardForm = ({ setJob, setLoading }: any) => {
         const url = `https://jsearch.p.rapidapi.com/search?${params.slice(
             0,
             -1
-        )}`;
+        )}&num_pages=3`;
         const options = {
             method: 'GET',
             headers: {
                 'X-RapidAPI-Key':
-                    '1f3570d7a1msh7aaf63d2dc38c36p120ab8jsn678523f6ac2c',
+                    'eff327089cmsh0b3c8aff7fe4a6fp120e34jsn5f7dc64f914f',
                 'X-RapidAPI-Host': 'jsearch.p.rapidapi.com',
             },
         };
@@ -80,10 +80,9 @@ const JobBoardForm = ({ setJob, setLoading }: any) => {
 
             if (data.data.length > 0) {
                 setJob(data.data);
-
+                setUrl(url);
+                console.log(url);
                 console.log(data.data);
-            } else {
-                alert('No jobs found');
             }
         } catch (error) {
             console.error(error);
